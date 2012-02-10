@@ -23,17 +23,24 @@ public class ConstraintSatisfaction {
 	return "This is supposed to be your solution to the problem.";
     }
 
-    public void backTrackingSearch(Assignment ass, CSP csp){
+    /**
+     * A general solution to backtracking depth first for solving the
+     * constraint satisfaction problem passed in.
+     *@param ass the current assignment
+     *@param csp the constraint satisfaction problem
+     **/
+    public void backtrackingRecurse(Assignment ass, CSP csp){
 	if(ass.isComplete()){
 	    return ass;
 	}Variable var = selectUnassignedVar(variables(csp), ass, csp);
 	for(Value val: orderDomainValues(var, ass, csp)){
 	    if(val.isConsistent(ass, csp)){
-		ass.add(var,value);
-
+		ass.add(var,val);
+		Result res = backtrackingRecurse(ass, csp);
+		if(!res.failure()){
+		    return res;
+		}ass.remove(var,val);
 	    }
-	}
+	}return null;
     }
-
-
 }
