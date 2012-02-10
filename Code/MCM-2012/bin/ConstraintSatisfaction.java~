@@ -23,17 +23,5 @@ public class ConstraintSatisfaction {
 	return "This is supposed to be your solution to the problem.";
     }
 
-    public void backTrackingSearch(Assignment ass, CSP csp){
-	if(ass.isComplete()){
-	    return ass;
-	}Variable var = selectUnassignedVar(variables(csp), ass, csp);
-	for(Value val: orderDomainValues(var, ass, csp)){
-	    if(val.isConsistent(ass, csp)){
-		ass.add(var,value);
-
-	    }
-	}
-    }
-
 
 }

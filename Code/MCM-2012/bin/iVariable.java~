@@ -26,4 +26,16 @@ public interface iVariable {
      **/
     String[] getValues();
 
+    /**
+     * Returns a list of other variables this one is dependent on.
+     **/
+    iVariable[] getDependencies();
+
+    /**
+     * Adds a variable to the dependency list.
+     **/
+    void addDependency(iVariable newDep);
+
+    /**
+     *
 }

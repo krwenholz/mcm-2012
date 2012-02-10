@@ -1,5 +1,12 @@
 
-public interface iAttribute<E> {
+public interface iAttribute {
+
+
+    /**
+     * Get a string name for this attribute: describing associated variable,
+     * domain, and possibly assigned value.
+     **/
+    String toSting();
 
     /**
      * Get a string describing the attribute domain (basically type).
@@ -9,12 +16,12 @@ public interface iAttribute<E> {
     /**
      * Get a list of valid domain values.
      **/
-    <E>[] getDomain();
+    Object[] getDomain();
 
     /**
      * Returns the current attribute value.
      **/
-    <E> getValue();
+    Object getValue();
 
     /**
      * Returns attributes this one depends on.
@@ -24,10 +31,16 @@ public interface iAttribute<E> {
     /**
      * Add a dependency.
      **/
-    void addDependency(iAttribute<E> newAttr);
+    void addDependency(iAttribute newAttr);
 
     /**
-     * Alter domain
+     * Assign the value.
      **/
+    void assignValue(Object newVal);
+
+    /**
+     * Set the domain.
+     **/
+    void assignDomain(Object[] newDom);
 
 }
