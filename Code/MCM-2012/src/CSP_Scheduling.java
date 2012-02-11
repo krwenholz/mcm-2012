@@ -5,23 +5,23 @@ import java.util.PriorityQueue;
  * Keeps track of the CSP: variables, domain
  **/
 public class CSP_Scheduling {
-    private PriorityQueue<TravelGroup> leftToLeave;
-    private ArrayList<TravelGroup> needsAssignment;
-    private TravelGroup[] positions;
-    private int today;
-    private int travelTolerance;
-    private int numSites;
+    public PriorityQueue<TravelGroup> leftToLeave;
+    public ArrayList<TravelGroup> needsAssignment;
+    public TravelGroup[] positions;
+    public int today;
+    public int travelTolerance;
+    public int numSites;
     /**
      * Bleh. . . . Constructor: destroyer of worlds.
      **/
     public CSP_Scheduling(TravelGroup[] positions,
 			  PriorityQueue<TravelGroup> leftToLeave,
-			  int today, int travelTolerance){
+			  int today){
 	this.leftToLeave = leftToLeave;
 	this.positions = positions;
 	this.needsAssignment = new ArrayList<TravelGroup>();
 	this.today = today;
-	this.travelTolerance = travelTolerance;
+	this.travelTolerance = Main.TRAVEL_TOLERANCE;
 	this.numSites = Main.NUM_SITES;
 	for(TravelGroup t: positions){
 	    this.needsAssignment.add(t);
@@ -85,5 +85,16 @@ public class CSP_Scheduling {
     
     public boolean isComplete(){
     	return this.needsAssignment.isEmpty();
+    }
+    
+    public PriorityQueue<TravelGroup> cloneLeftToLeave(){
+    	PriorityQueue<TravelGroup> ret = new PriorityQueue<TravelGroup>();
+    	PriorityQueue<TravelGroup> n = new PriorityQueue<TravelGroup>();
+    	for(TravelGroup g: this.leftToLeave){
+    		ret.add(g);
+    		n.add(g);
+    	}
+    	this.leftToLeave = n;
+    	return ret;
     }
 }

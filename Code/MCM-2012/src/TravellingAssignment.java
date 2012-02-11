@@ -2,13 +2,13 @@
  * A class for containing assignment information for each day.
  **/
 public class TravellingAssignment {
-    private TravelGroup[] campsites;
+    public TravelGroup[] campsites;
 
     /**
      * A basic initializer.
      **/
-    public TravellingAssignment(int numSites){
-	this.campsites = new TravelGroup[numSites];
+    public TravellingAssignment(){
+	this.campsites = new TravelGroup[Main.NUM_SITES];
     }
     /**
      *Is this assignment consistent?
