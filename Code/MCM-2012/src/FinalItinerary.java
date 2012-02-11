@@ -22,6 +22,8 @@ public class FinalItinerary{
 			ret += i+", ";
 		}return ret+"\n Average Daily Distance: "+
 			((double)Main.RIVER_LENGTH/(double)this.sites.size())+
-			"\n base travel: "+this.group.travel;
+			"\n base travel: "+this.group.travel+
+			"\n days out: "+this.sites.size()+
+			"\n start day: "+this.group.lowDepartureDay;
 	}
 }

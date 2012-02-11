@@ -2,11 +2,11 @@ import java.util.*;
 public class Main {
 	public static final int NOT_IN_POSITIONS = 1111;
 	public static final int FINISH = 9999;//campsite "value" for the ended trip
-	public static final int SEASON_DAYS = 30; //180 in end
+	public static final int SEASON_DAYS = 50; //180 in end
 	public static final int NUM_SITES = 40;//128 is norm
 	public static final int TRAVEL_TOLERANCE = 1;
 	public static final int RIVER_LENGTH = 225;
-	public static final int NUM_GROUPS =4;
+	public static final int NUM_GROUPS =40;
 	/**
 	 * The main method should initialize variables we want to set for
 	 * absolutely ANYTHING.  This way we can avoid screwing around with
@@ -58,18 +58,18 @@ public class Main {
 		PriorityQueue<TravelGroup> pq = new PriorityQueue<TravelGroup>();
 		Random r = new Random();
 		for(int i =0; i<numCampers; i++){
-			int speed = 8;//(r.nextInt(2)+1)*4;
-			int hours = 4;//0;
-			/*if(speed==4){
-				hours = r.nextInt(4)+3;
+			int speed = (r.nextInt(2)+1)*4;
+			int hours = 0;
+			if(speed==4){
+				hours = r.nextInt(4)+4;
 			}else{
 				hours = r.nextInt(3)+2;
-			}*/
+			}
 			int travelDays = (Main.NUM_SITES/
 					((speed*hours)/(Main.RIVER_LENGTH/Main.NUM_SITES)));
 			//System.out.println(travelDays);
-			int departure = i;//r.nextInt(Main.SEASON_DAYS-travelDays+1);
-			//System.out.println("days: "+travelDays+"\t dDay: "+departure);
+			int departure = r.nextInt(Main.SEASON_DAYS-travelDays+1);
+			System.out.println("days: "+travelDays+"\t dDay: "+departure);
 			TravelGroup g = new TravelGroup(i,
 					speed, hours, departure);
 			pq.add(g);
