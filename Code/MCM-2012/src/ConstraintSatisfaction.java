@@ -15,10 +15,15 @@ public class ConstraintSatisfaction {
 			TravellingAssignment ass, CSP_Scheduling csp,
 			int today){
 		//check if everything is assigned (we have already been checking for correctness)
+		//System.out.println(csp.needsAssignment);
+		//System.out.println(today);
 		if(csp.isComplete()){
-			if(today==Main.SEASON_DAYS){
+			if(today==Main.SEASON_DAYS-1 || 
+					(csp.leftToLeave.size()==0 
+					&& csp.positions.length==0)){//indexing days starts at 0
 				ArrayList<TravellingAssignment> ret = new ArrayList<TravellingAssignment>();
 				ret.add(ass);
+				//System.out.println("found a solution");
 				return ret;
 			}
 			TravellingAssignment newAss = new TravellingAssignment();

@@ -28,9 +28,9 @@ public class TravelGroup implements Comparable<TravelGroup>{
 	 */
 	public int compareTo(TravelGroup g){
 		if(g.lowDepartureDay<this.lowDepartureDay){
-			return -1;
-		}if(g.lowDepartureDay>this.lowDepartureDay){
 			return 1;
+		}if(g.lowDepartureDay>this.lowDepartureDay){
+			return -1;
 		}return 0;
 	}
 

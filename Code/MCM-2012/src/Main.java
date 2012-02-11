@@ -6,7 +6,7 @@ public class Main {
 	public static final int NUM_SITES = 40;//128 is norm
 	public static final int TRAVEL_TOLERANCE = 1;
 	public static final int RIVER_LENGTH = 225;
-	public static final int NUM_GROUPS =1;
+	public static final int NUM_GROUPS =4;
 	/**
 	 * The main method should initialize variables we want to set for
 	 * absolutely ANYTHING.  This way we can avoid screwing around with
@@ -17,11 +17,11 @@ public class Main {
 		TravellingAssignment ass = new TravellingAssignment();
 		PriorityQueue<TravelGroup> q = generateCampers(Main.NUM_GROUPS);
 		CSP_Scheduling csp = new CSP_Scheduling(new TravelGroup[0],
-				q, 1);
-		ArrayList<TravellingAssignment> assessment = ConstraintSatisfaction.go(ass, csp, 1);
-		//for(TravellingAssignment)
-		System.out.println(assessment);
-		String s = prettyPrintAssessment(assessment);
+				q, 0);
+		System.out.println(csp.needsAssignment);
+		ArrayList<TravellingAssignment> allAssignments = ConstraintSatisfaction.go(ass, csp, 0);
+		//System.out.println("Assessment size "+allAssignments.size());
+		String s = prettyPrintAssessment(allAssignments);
 		System.out.println(s);
 	}
 	
@@ -39,15 +39,16 @@ public class Main {
 				TravelGroup g = t.campsites[i];
 				if(g!=null){
 					if(finalItins[g.uniqueID]==null){
-						System.out.println(t.campsites.length);
+						//System.out.println("Adding itinerary");
 						finalItins[g.uniqueID]=
 								new FinalItinerary(new ArrayList<Integer>(), g);
 					}finalItins[g.uniqueID].sites.add(i);
 				}
 			}
 		}
-		System.out.println(finalItins);
+		//System.out.println(finalItins[finalItins.length-1]);
 		for(FinalItinerary f: finalItins){
+			//System.out.println("itin string");
 			ret = ret+f.toString()+"\n";
 		}
 		return ret;

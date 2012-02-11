@@ -13,23 +13,24 @@ public class CSP_Scheduling {
      * Bleh. . . . Constructor: destroyer of worlds.
      **/
     public CSP_Scheduling(TravelGroup[] positions,
-			  PriorityQueue<TravelGroup> leftToLeave,
-			  int today){
-	this.leftToLeave = leftToLeave;
-	this.positions = positions;
-	this.needsAssignment = new ArrayList<TravelGroup>();
-	this.today = today;
-	for(TravelGroup t: positions){
-		if(t!=null){
-			this.needsAssignment.add(t);
-		}
-	}while(!this.leftToLeave.isEmpty() && 
-			this.leftToLeave.peek().lowDepartureDay == today){
-	    TravelGroup camper = this.leftToLeave.poll();
-	    camper.latestDay = Math.min(Main.SEASON_DAYS,
-					this.today+(Main.NUM_SITES/camper.travel));//season days
-	    this.needsAssignment.add(camper);
-	}
+    		PriorityQueue<TravelGroup> leftToLeave,
+    		int today){
+    	this.leftToLeave = leftToLeave;
+    	this.positions = positions;
+    	this.needsAssignment = new ArrayList<TravelGroup>();
+    	this.today = today;
+    	for(TravelGroup t: positions){
+    		if(t!=null){
+    			this.needsAssignment.add(t);
+    		}
+    	}while(!this.leftToLeave.isEmpty() && 
+    			this.leftToLeave.peek().lowDepartureDay == today){
+    		//System.out.println("adding a not-yet-left");
+    		TravelGroup camper = this.leftToLeave.poll();
+    		camper.latestDay = Math.min(Main.SEASON_DAYS,
+    				this.today+(Main.NUM_SITES/camper.travel));//season days
+    		this.needsAssignment.add(camper);
+    	}
     }
 
     /**
@@ -70,7 +71,8 @@ public class CSP_Scheduling {
 	    }
 	}for(int i=0; i<sites.size(); i++){
 	    if(sites.get(i)>Main.NUM_SITES-1){
-		sites.set(i, Main.FINISH);//finishing
+	    	sites.remove(i);//finishing
+	    	sites.add(i, Main.FINISH);
 	    }
 	}return sites;
     }

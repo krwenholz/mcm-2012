@@ -21,6 +21,7 @@ public class FinalItinerary{
 		for(Integer i: this.sites){
 			ret += i+", ";
 		}return ret+"\n Average Daily Distance: "+
-			((double)Main.RIVER_LENGTH/(double)this.sites.size());
+			((double)Main.RIVER_LENGTH/(double)this.sites.size())+
+			"\n base travel: "+this.group.travel;
 	}
 }
