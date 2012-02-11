@@ -12,12 +12,12 @@ public class TravelGroup implements Comparable<TravelGroup>{
     /**
      * Basic constructor initializes values and does some calculation.
      **/
-    public TravelGroup(int speed, int time, int lowDD, /*int highDD,*/ int dist){
+    public TravelGroup(int speed, int time, int lowDD/*, int highDD,*/){
 	this.avgSpeed = speed;
 	this.waterTime = time;
 	this.lowDepartureDay = lowDD;
 	//this.highDepartureDay = highDD;
-	this.travel = speed*time/dist;
+	this.travel = (speed*time)/(Main.RIVER_LENGTH/Main.NUM_SITES);
     }
 
     //IMPLEMENT COMPARE_TO

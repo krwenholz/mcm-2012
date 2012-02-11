@@ -9,8 +9,6 @@ public class CSP_Scheduling {
     public ArrayList<TravelGroup> needsAssignment;
     public TravelGroup[] positions;
     public int today;
-    public int travelTolerance;
-    public int numSites;
     /**
      * Bleh. . . . Constructor: destroyer of worlds.
      **/
@@ -21,14 +19,15 @@ public class CSP_Scheduling {
 	this.positions = positions;
 	this.needsAssignment = new ArrayList<TravelGroup>();
 	this.today = today;
-	this.travelTolerance = Main.TRAVEL_TOLERANCE;
-	this.numSites = Main.NUM_SITES;
 	for(TravelGroup t: positions){
-	    this.needsAssignment.add(t);
-	}while(this.leftToLeave.peek().lowDepartureDay == today){
+		if(t!=null){
+			this.needsAssignment.add(t);
+		}
+	}while(!this.leftToLeave.isEmpty() && 
+			this.leftToLeave.peek().lowDepartureDay == today){
 	    TravelGroup camper = this.leftToLeave.poll();
 	    camper.latestDay = Math.min(Main.SEASON_DAYS,
-					this.today+(this.numSites/camper.travel));//season days
+					this.today+(Main.NUM_SITES/camper.travel));//season days
 	    this.needsAssignment.add(camper);
 	}
     }
@@ -38,7 +37,7 @@ public class CSP_Scheduling {
      **/
     public TravelGroup getNextGroup(){
 	//WE SHOULD BE SORTING BASED ON MINIMUM REMAINING VALUES
-	return this.needsAssignment.remove(this.needsAssignment.size());
+	return this.needsAssignment.remove(this.needsAssignment.size()-1);
     }
 
     /**
@@ -48,7 +47,7 @@ public class CSP_Scheduling {
 	ArrayList<Integer> sites = null;
 	int site = Main.NOT_IN_POSITIONS;
 	for(int i=0; i<positions.length; i++){
-	    if(positions[i].equals(g)){
+	    if(positions[i]==g){
 	    	//XXXX may not actually work to use .equals
 	    	site = i;
 	    	break;
@@ -56,21 +55,21 @@ public class CSP_Scheduling {
 	}if(site==Main.NOT_IN_POSITIONS){
 	    //just starting off
 	    sites = new ArrayList<Integer>();
-	    for(int i=g.travel-this.travelTolerance; i<g.travel+this.travelTolerance; i++){
-		sites.add(i);
+	    for(int i=g.travel-Main.TRAVEL_TOLERANCE; i<g.travel+Main.TRAVEL_TOLERANCE; i++){
+	    	sites.add(i);
 	    }
 	}else{
 	    //at campsite b
-	    if(g.latestDay<((this.numSites-site)/g.travel)){
+	    if(g.latestDay<((Main.NUM_SITES-site)/g.travel)){
 	    	return new ArrayList<Integer>();
 	    }
 	    sites = new ArrayList<Integer>();
-	    for(int i=site+g.travel-this.travelTolerance; 
-	    		i<site+g.travel+this.travelTolerance; i++){
+	    for(int i=site+g.travel-Main.TRAVEL_TOLERANCE; 
+	    		i<site+g.travel+Main.TRAVEL_TOLERANCE; i++){
 	    		sites.add(i);
 	    }
 	}for(int i=0; i<sites.size(); i++){
-	    if(sites.get(i)>this.numSites-1){
+	    if(sites.get(i)>Main.NUM_SITES-1){
 		sites.set(i, Main.FINISH);//finishing
 	    }
 	}return sites;

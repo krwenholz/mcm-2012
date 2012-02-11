@@ -14,6 +14,9 @@ public class TravellingAssignment {
      *Is this assignment consistent?
      **/
     public boolean isConsistent(int site){
+    if(site == Main.FINISH){
+    	return true;
+    }
 	if(campsites[site]!=null){
 	    return false;
 	}return true;
@@ -23,14 +26,20 @@ public class TravellingAssignment {
      * Assign someone to a campsite for the day.
      **/
     public void add(int site, TravelGroup camper){
-	campsites[site] = camper;
+    	if(site == Main.FINISH){
+    		return;
+    	}
+    	campsites[site] = camper;
     }
 
     /**
      * Remove the assignment.
      **/
     public void remove(int site){
-	campsites[site] = null;
+    	if(site == Main.FINISH){
+    		return;
+    	}
+    	campsites[site] = null;
     }
 
 }

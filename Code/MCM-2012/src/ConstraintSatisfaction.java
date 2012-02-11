@@ -38,12 +38,17 @@ public class ConstraintSatisfaction {
 	    //FIND A SOLUTION
 	    //RETURN IT OR NOT
 		ArrayList<TravellingAssignment> ret = go(newAss, newCSP, today+1);
+		if(ret==null){
+			return null;//something failed further down so our day needs to "restart" somewhere
+		}
 		ret.add(ass);
 		return ret;
 	}
 	//select the next unassigned variable
 	TravelGroup g = csp.getNextGroup();
+	System.out.println(csp.getCampsites(g, ass));
 	for(int val: csp.getCampsites(g, ass)){
+		System.out.println("assign variables"); 
 	    //attempt to assign domain values to this variable
 	    if(ass.isConsistent(val)){
 		//if the assignment was valid so far then here we go
