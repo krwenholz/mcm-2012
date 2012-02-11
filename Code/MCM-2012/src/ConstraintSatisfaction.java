@@ -3,7 +3,10 @@
  * assesments, and various other high level solution processes.
  */
 public class ConstraintSatisfaction {
-
+    /**
+     *WE SHOULD INTERN OUR VARIABLE NAMES SINCE THEY WILL BE COMPARED OFTEN,
+     *then use ==
+     **/
 
     /**
      * The constructor just initializes an instance of this class and takes
@@ -29,18 +32,48 @@ public class ConstraintSatisfaction {
      *@param ass the current assignment
      *@param csp the constraint satisfaction problem
      **/
-    public void backtrackingRecurse(Assignment ass, CSP csp){
+
+    //THIS GUY WILL BE DONE EACH DAY, THE CALLER SHOULD CONSTRUCT THE ASSIGNMENT
+    // AND CSP SUCH THAT IT IS LIMITED TO WHAT IT NEEDS TO DO THAT DAY
+    public void backtrackingRecurse(TravellingAssignment ass, CSP_Scheduling csp){
+	//check if everything is assigned (we have already been checking for correctness)
 	if(ass.isComplete()){
 	    return ass;
-	}Variable var = selectUnassignedVar(variables(csp), ass, csp);
-	for(Value val: orderDomainValues(var, ass, csp)){
-	    if(val.isConsistent(ass, csp)){
+	}
+	//select the next unassigned variable
+	String var = selectUnassignedVar(csp.getVariables(), ass, csp);
+	for(String val: orderDomainValues(var, ass, csp)){
+	    //attempt to assign domain values to this variable
+	    if(isConsistent(val, ass, csp)){
+		//if the assignment was valid so far then here we go
 		ass.add(var,val);
-		Result res = backtrackingRecurse(ass, csp);
-		if(!res.failure()){
-		    return res;
+		//HERE WE SHOULD CHECK OUR ASSIGNMENT WITH FILTERING OR SOMETHING
+		boolean isSuccess = backtrackingRecurse(ass, csp);
+		if(!isSuccess){
+		    //something failed deeper down
+		    return ass;
 		}ass.remove(var,val);
 	    }
-	}return null;
+	}
+	//we failed to create a valid assignment
+	return null;
     }
+
+
+    /**
+     * Returns an unassigned variable that should get an assignment next.
+     **/
+    public Variable selectUnassignedVar(Variables[] vars, TravellingAssignment ass, CSP_Scheduling csp){
+
+    }
+
+    /**
+     * Orders the possible values for a given variable and returns an array
+     * of these.
+     **/
+    public Value orderDomainValues(Variable var, TravellingAssignment ass, CSP_Scheduling csp){
+
+    }
+
+
 }
