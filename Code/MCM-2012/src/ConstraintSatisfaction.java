@@ -35,10 +35,13 @@ public class ConstraintSatisfaction {
 
     //THIS GUY WILL BE DONE EACH DAY, THE CALLER SHOULD CONSTRUCT THE ASSIGNMENT
     // AND CSP SUCH THAT IT IS LIMITED TO WHAT IT NEEDS TO DO THAT DAY
-    public void backtrackingRecurse(TravellingAssignment ass, CSP_Scheduling csp){
+    public ArrayList<TravellingAssignment> backtrackingRecurse(TravellingAssignment ass, CSP_Scheduling csp){
 	//check if everything is assigned (we have already been checking for correctness)
-	if(ass.isComplete()){
-	    return ass;
+	if(csp.isComplete(ass)){
+	    //FORMULATE A NEW CSP FOR DAY me++
+	    //FIND A SOLUTION
+	    //RETURN IT OR NOT
+	    backtrackingRecurse
 	}
 	//select the next unassigned variable
 	String var = selectUnassignedVar(csp.getVariables(), ass, csp);
@@ -48,8 +51,8 @@ public class ConstraintSatisfaction {
 		//if the assignment was valid so far then here we go
 		ass.add(var,val);
 		//HERE WE SHOULD CHECK OUR ASSIGNMENT WITH FILTERING OR SOMETHING
-		boolean isSuccess = backtrackingRecurse(ass, csp);
-		if(!isSuccess){
+		ArrayList<TravellingAssignment> isSuccess = backtrackingRecurse(ass, csp);
+		if(isSuccess){
 		    return ass;
 		}ass.remove(var,val);
 	    }
