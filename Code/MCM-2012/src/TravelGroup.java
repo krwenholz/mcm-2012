@@ -1,7 +1,7 @@
 /**
  * A group of folks travelling together
  **/
-public class TravelGroup {
+public class TravelGroup implements Comparable<TravelGroup>{
     public int avgSpeed;
     public int waterTime;
     public int lowDepartureDay;
@@ -21,5 +21,15 @@ public class TravelGroup {
     }
 
     //IMPLEMENT COMPARE_TO
+    /**
+     * Compares based on lowDepartureDay for the priority queue
+     */
+    public int compareTo(TravelGroup g){
+    	if(g.lowDepartureDay<this.lowDepartureDay){
+    		return -1;
+    	}if(g.lowDepartureDay>this.lowDepartureDay){
+    		return 1;
+    	}return 0;
+    }
 
 }

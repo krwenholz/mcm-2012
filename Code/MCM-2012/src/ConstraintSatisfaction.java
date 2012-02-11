@@ -1,4 +1,4 @@
-C/**
+/**
  * The heavy lifting class.  Runs the primary search algorithm, heuristic
  * assesments, and various other high level solution processes.
  */
@@ -23,7 +23,7 @@ public class ConstraintSatisfaction {
      *@return a string specifying the result of the constraint satisfaction
      **/
     public String satisfy(){
-	return "This is supposed to be your solution to the problem.";
+    	return "This is supposed to be your solution to the problem.";
     }
 
     /**
@@ -37,11 +37,10 @@ public class ConstraintSatisfaction {
     // AND CSP SUCH THAT IT IS LIMITED TO WHAT IT NEEDS TO DO THAT DAY
     public ArrayList<TravellingAssignment> backtrackingRecurse(TravellingAssignment ass, CSP_Scheduling csp){
 	//check if everything is assigned (we have already been checking for correctness)
-	if(csp.isComplete(ass)){
+	if(csp.isComplete()){
 	    //FORMULATE A NEW CSP FOR DAY me++
 	    //FIND A SOLUTION
 	    //RETURN IT OR NOT
-	    backtrackingRecurse
 	}
 	//select the next unassigned variable
 	String var = selectUnassignedVar(csp.getVariables(), ass, csp);

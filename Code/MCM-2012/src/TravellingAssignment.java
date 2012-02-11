@@ -14,7 +14,7 @@ public class TravellingAssignment {
      *Is this assignment consistent?
      **/
     public boolean isConsistent(int site){
-	if(campsites[site]!=null)){
+	if(campsites[site]!=null){
 	    return false;
 	}return true;
     }
