@@ -1,4 +1,4 @@
-/**
+C/**
  * The heavy lifting class.  Runs the primary search algorithm, heuristic
  * assesments, and various other high level solution processes.
  */
@@ -50,7 +50,6 @@ public class ConstraintSatisfaction {
 		//HERE WE SHOULD CHECK OUR ASSIGNMENT WITH FILTERING OR SOMETHING
 		boolean isSuccess = backtrackingRecurse(ass, csp);
 		if(!isSuccess){
-		    //something failed deeper down
 		    return ass;
 		}ass.remove(var,val);
 	    }
