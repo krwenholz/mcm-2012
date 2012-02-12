@@ -69,7 +69,7 @@ public class Main {
 					((speed*hours)/(Main.RIVER_LENGTH/Main.NUM_SITES)));
 			//System.out.println(travelDays);
 			int departure = r.nextInt(Main.SEASON_DAYS-travelDays+1);
-			System.out.println("days: "+travelDays+"\t dDay: "+departure);
+			//System.out.println("days: "+travelDays+"\t dDay: "+departure);
 			TravelGroup g = new TravelGroup(i,
 					speed, hours, departure);
 			pq.add(g);
