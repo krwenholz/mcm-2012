@@ -2,11 +2,11 @@ import java.util.*;
 public class Main {
 	public static final int NOT_IN_POSITIONS = 1111;
 	public static final int FINISH = 9999;//campsite "value" for the ended trip
-	public static final int SEASON_DAYS = 50; //180 in end
-	public static final int NUM_SITES = 40;//128 is norm
+	public static final int SEASON_DAYS = 180; //180 in end
+	public static final int NUM_SITES = 100;//128 is norm
 	public static final int TRAVEL_TOLERANCE = 1;
 	public static final int RIVER_LENGTH = 225;
-	public static final int NUM_GROUPS =40;
+	public static final int NUM_GROUPS =200;
 	/**
 	 * The main method should initialize variables we want to set for
 	 * absolutely ANYTHING.  This way we can avoid screwing around with
@@ -73,6 +73,14 @@ public class Main {
 			TravelGroup g = new TravelGroup(i,
 					speed, hours, departure);
 			pq.add(g);
-		}return pq;
+		}
+		/*int i=0;
+		for(TravelGroup g: pq){
+			System.out.print(g.lowDepartureDay+" ");
+			if(i%3==0){
+				System.out.print("\n");
+			}i++;
+		}*/
+		return pq;
 	}
 }

@@ -58,7 +58,7 @@ public class ConstraintSatisfaction {
 		}
 		//we failed to create a valid assignment
 		csp.addBack(g);
-		System.out.println("total fail");
+		//System.out.println("total fail");
 		return null;
 	}
 }
