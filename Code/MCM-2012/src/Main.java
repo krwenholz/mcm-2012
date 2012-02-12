@@ -4,10 +4,11 @@ public class Main {
 	public static final int FINISH = 9999;//campsite "value" for the ended trip
 	public static final int SEASON_DAYS = 180; //180 in end
 	public static final int NUM_SITES = 100;//128 is norm
-	public static final int TRAVEL_TOLERANCE = 5;
+	public static final int TRAVEL_TOLERANCE = 2;
 	public static final int RIVER_LENGTH = 225;
-	public static final int NUM_GROUPS = 600;
+	public static final int NUM_GROUPS = 200;
 	public static final double HAPPINESS_MAX = 10;
+	public static final int TRIES = 10;
 	/**
 	 * The main method should initialize variables we want to set for
 	 * absolutely ANYTHING.  This way we can avoid screwing around with
@@ -15,22 +16,47 @@ public class Main {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		TravellingAssignment ass = new TravellingAssignment();
-		PriorityQueue<TravelGroup> q = generateCampers(Main.NUM_GROUPS);
-		CSP_Scheduling csp = new CSP_Scheduling(new TravelGroup[0],
-				q, 0);
-		//System.out.println(csp.needsAssignment);
-		ArrayList<TravellingAssignment> allAssignments = ConstraintSatisfaction.go(ass, csp, 0);
-		//System.out.println("Assessment size "+allAssignments.size());
-		FinalItinerary[] itins = createItins(allAssignments);
-		String schedules = prettyPrintAssessment(itins);
-		System.out.println(schedules);
-		double[] happinesses = calculateHappiness(itins);
-		System.out.println("HAPPINESS: ");
-		doStats(happinesses);
+		int fails = 0;
+        int successes = 0;
+        double[] happiness = new double[Main.TRIES];
+        double[] sds = new double[Main.TRIES];
+        for(int i = 0; i < Main.TRIES; i++){
+            boolean failed = false;
+            try{
+                TravellingAssignment ass = new TravellingAssignment();
+                PriorityQueue<TravelGroup> q = generateCampers(Main.NUM_GROUPS);
+                CSP_Scheduling csp = new CSP_Scheduling(new TravelGroup[0],
+                        q, 0);
+                //System.out.println(csp.needsAssignment);
+                ConstraintSatisfaction.TIME = System.currentTimeMillis();
+                ConstraintSatisfaction.WAIT = 10000; //Time to run before throwing an error, in ms
+                ArrayList<TravellingAssignment> allAssignments = ConstraintSatisfaction.go(ass, csp, 0);
+                //System.out.println("Assessment size "+allAssignments.size());
+                //String s = prettyPrintAssessment(allAssignments);
+                //System.out.println(s);
+                FinalItinerary[] itins = createItins(allAssignments);
+        		double[] happinesses = calculateHappiness(itins);
+        		double[] stats = doStats(happinesses);
+        		happiness[i] = stats[0];
+        		sds[i] = stats[1];
+            }catch(Exception e){
+                fails++;
+                failed = !failed;
+            }
+            if(!failed){
+                successes++;
+            }
+        }
+        System.out.println("Groups: " + NUM_GROUPS + "\nTolerance: " + TRAVEL_TOLERANCE +
+                "\nFailed " + fails + " times and succeeded " + successes + " out of " +
+                Main.TRIES + " tries.");
+        double[] avgStats = doStats(happiness);
+        double[] sdsStats = doStats(sds);
+        System.out.println("Avg happiness is: "+avgStats[0]);
+        System.out.println("SD of happiness is: "+sdsStats[0]);
 	}
 	
-	private static void doStats(double[] nums){
+	private static double[] doStats(double[] nums){
 		double avg = 0;
 		double sd = 0;
 		for(int i = 0; i <nums.length; i++){
@@ -40,7 +66,8 @@ public class Main {
 			sd += Math.pow(((double)nums[i]-avg),2);
 		}sd = sd/(double)nums.length;
 		sd = Math.sqrt(sd);
-		System.out.println("average: "+avg+"\n standard-deviation: "+sd);
+		double[] ret = {avg, sd};
+		return ret;
 	}
 	/**
 	 * returns the average happiness quotient of this run

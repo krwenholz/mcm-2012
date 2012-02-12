@@ -6,6 +6,8 @@ import java.util.ArrayList;
  */
 public class ConstraintSatisfaction {
 	public static int NUM_FAILS = 0;
+	public static long TIME;
+    public static long WAIT;
 	/**
 	 * A general solution to backtracking depth first for solving the
 	 * constraint satisfaction problem passed in.
@@ -15,6 +17,10 @@ public class ConstraintSatisfaction {
 	public static ArrayList<TravellingAssignment> go(
 			TravellingAssignment ass, CSP_Scheduling csp,
 			int today){
+		long STOP = TIME + WAIT;
+		if(System.currentTimeMillis() >= STOP){
+			throw new NullPointerException("No Solution Probable.");
+		}
 		//check if everything is assigned (we have already been checking for correctness)
 		//System.out.println(csp.needsAssignment);
 		//System.out.println(today);
