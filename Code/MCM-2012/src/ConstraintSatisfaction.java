@@ -5,6 +5,7 @@ import java.util.ArrayList;
  * assessments, and various other high level solution processes.
  */
 public class ConstraintSatisfaction {
+	public static int NUM_FAILS = 0;
 	/**
 	 * A general solution to backtracking depth first for solving the
 	 * constraint satisfaction problem passed in.
@@ -34,7 +35,8 @@ public class ConstraintSatisfaction {
 			//RETURN IT OR NOT
 			ArrayList<TravellingAssignment> ret = go(newAss, newCSP, today+1);
 			if(ret==null){
-				System.out.println("fail part 1");
+				ConstraintSatisfaction.NUM_FAILS++;
+				System.out.println("fail part "+ConstraintSatisfaction.NUM_FAILS);
 				return null;//something failed further down so our day needs to "restart" somewhere
 			}
 			ret.add(ass);
