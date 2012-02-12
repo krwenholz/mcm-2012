@@ -8,7 +8,7 @@ public class Main {
 	public static final int RIVER_LENGTH = 225;
 	public static final int NUM_GROUPS = 200;
 	public static final double HAPPINESS_MAX = 10;
-	public static final int TRIES = 10;
+	public static final int TRIES = 500;
 	/**
 	 * The main method should initialize variables we want to set for
 	 * absolutely ANYTHING.  This way we can avoid screwing around with

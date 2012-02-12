@@ -42,7 +42,7 @@ public class ConstraintSatisfaction {
 			ArrayList<TravellingAssignment> ret = go(newAss, newCSP, today+1);
 			if(ret==null){
 				ConstraintSatisfaction.NUM_FAILS++;
-				System.out.println("fail part "+ConstraintSatisfaction.NUM_FAILS);
+				//System.out.println("fail part "+ConstraintSatisfaction.NUM_FAILS);
 				return null;//something failed further down so our day needs to "restart" somewhere
 			}
 			ret.add(ass);
