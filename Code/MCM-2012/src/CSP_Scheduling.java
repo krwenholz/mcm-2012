@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.PriorityQueue;
 
 /**
@@ -74,7 +75,10 @@ public class CSP_Scheduling {
 				sites.remove(i);//finishing
 				sites.add(i, Main.FINISH);
 			}
-		}return sites;
+		}Collections.sort(sites, Collections.reverseOrder());
+		int mid = sites.remove(sites.size()/2);
+		sites.add(0, mid);		
+		return sites;
 	}
 
 	/**

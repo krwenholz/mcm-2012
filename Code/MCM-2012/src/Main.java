@@ -4,9 +4,10 @@ public class Main {
 	public static final int FINISH = 9999;//campsite "value" for the ended trip
 	public static final int SEASON_DAYS = 180; //180 in end
 	public static final int NUM_SITES = 100;//128 is norm
-	public static final int TRAVEL_TOLERANCE = 1;
+	public static final int TRAVEL_TOLERANCE = 5;
 	public static final int RIVER_LENGTH = 225;
-	public static final int NUM_GROUPS =200;
+	public static final int NUM_GROUPS = 600;
+	public static final double HAPPINESS_MAX = 10;
 	/**
 	 * The main method should initialize variables we want to set for
 	 * absolutely ANYTHING.  This way we can avoid screwing around with
@@ -18,23 +19,77 @@ public class Main {
 		PriorityQueue<TravelGroup> q = generateCampers(Main.NUM_GROUPS);
 		CSP_Scheduling csp = new CSP_Scheduling(new TravelGroup[0],
 				q, 0);
-		System.out.println(csp.needsAssignment);
+		//System.out.println(csp.needsAssignment);
 		ArrayList<TravellingAssignment> allAssignments = ConstraintSatisfaction.go(ass, csp, 0);
 		//System.out.println("Assessment size "+allAssignments.size());
-		String s = prettyPrintAssessment(allAssignments);
-		System.out.println(s);
+		FinalItinerary[] itins = createItins(allAssignments);
+		String schedules = prettyPrintAssessment(itins);
+		System.out.println(schedules);
+		double[] happinesses = calculateHappiness(itins);
+		System.out.println("HAPPINESS: ");
+		doStats(happinesses);
 	}
 	
+	private static void doStats(double[] nums){
+		double avg = 0;
+		double sd = 0;
+		for(int i = 0; i <nums.length; i++){
+			avg += nums[i];
+		}avg = avg/(double)nums.length;
+		for(int i = 0; i<nums.length; i++){
+			sd += Math.pow(((double)nums[i]-avg),2);
+		}sd = sd/(double)nums.length;
+		sd = Math.sqrt(sd);
+		System.out.println("average: "+avg+"\n standard-deviation: "+sd);
+	}
 	/**
-	 * Craft a nice printout of the final results for the assignment problem.
-	 * @param assessment the final assignments for our problem
+	 * returns the average happiness quotient of this run
+	 * @param itins
+	 * @return
 	 */
-	private static String prettyPrintAssessment(
-			ArrayList<TravellingAssignment> assessment) {
-		//first we want to organize the output by grouping the campers
-		String ret = "";
+	private static double[] calculateHappiness(FinalItinerary[] itins){
+		//THIS IS HAPPINESS
+		double[] scores = new double[itins.length];
+		for(int i = 0; i<itins.length;i++){			
+			scores[i] = Main.HAPPINESS_MAX-Math.abs(1-(((double)(Main.RIVER_LENGTH/((double)itins[i].sites.size()+1)))/
+					((double)itins[i].group.avgSpeed*(double)itins[i].group.waterTime)))*Main.HAPPINESS_MAX/2;			
+		}int[] encounters = new int[itins.length];
+		for(int i = 0; i<itins.length; i++){
+			//through each travel group
+			for(int j = i+1; j<itins.length-1; j++){
+				//compare to every other travel group I haven't looked at yet
+				for(int cSite = 0; cSite < itins[i].sites.size()-1 && 
+						cSite < itins[j].sites.size()-1; cSite++){
+					//look at all of my campsites
+					if(itins[i].group.lowDepartureDay+cSite==itins[j].group.lowDepartureDay+cSite){
+						//compare only if the day of camping is the same
+						if(itins[i].sites.get(cSite)<itins[j].sites.get(cSite)){
+							//did this one start less than the other?
+							if(itins[i].sites.get(cSite+1)>itins[j].sites.get(cSite+1)){
+								//did this one end greater than the other? = passed someone
+								encounters[i] = encounters[i]++;
+								encounters[j] = encounters[j]++;
+							}
+						}if(itins[i].sites.get(cSite)>itins[j].sites.get(cSite)){
+							//did this one start greater than the other?
+							if(itins[i].sites.get(cSite+1)<itins[j].sites.get(cSite+1)){
+								//did this one end less than the other? = got passed
+								encounters[i] = encounters[i]++;
+								encounters[j] = encounters[j]++;
+							}
+						}	
+					}
+				}
+			}
+		}for(int i = 0; i<scores.length; i++){
+			scores[i] = scores[i] - (Main.HAPPINESS_MAX/itins[i].sites.size())*(encounters[i]/2);
+		}return scores;
+		//happiness = 100-[(100/visitedSites/2)meetups+(avgSpeed/desiredSpeed*100/2)]
+	}
+	
+	private static FinalItinerary[] createItins(ArrayList<TravellingAssignment> assignments){
 		FinalItinerary[] finalItins = new FinalItinerary[Main.NUM_GROUPS];
-		for(TravellingAssignment t: assessment){
+		for(TravellingAssignment t: assignments){
 			for(int i = 0; i<t.campsites.length; i++){
 				TravelGroup g = t.campsites[i];
 				if(g!=null){
@@ -45,9 +100,19 @@ public class Main {
 					}finalItins[g.uniqueID].sites.add(i);
 				}
 			}
-		}
+		}return finalItins;
+	}
+	
+	/**
+	 * Craft a nice printout of the final results for the assignment problem.
+	 * @param assessment the final assignments for our problem
+	 */
+	private static String prettyPrintAssessment(
+			FinalItinerary[] itins) {
+		//first we want to organize the output by grouping the campers
+		String ret = "";
 		//System.out.println(finalItins[finalItins.length-1]);
-		for(FinalItinerary f: finalItins){
+		for(FinalItinerary f: itins){
 			//System.out.println("itin string");
 			ret = ret+f.toString()+"\n";
 		}
@@ -83,4 +148,12 @@ public class Main {
 		}*/
 		return pq;
 	}
+	
+
+//	ArrayList<Integer> x = new ArrayList<Integer>();
+//	x.add(1);
+//	x.add(3);
+//	x.add(0);
+//	Collections.sort(x, Collections.reverseOrder());
+//	System.out.println(x);
 }
