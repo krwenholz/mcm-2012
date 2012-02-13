@@ -83,17 +83,18 @@
 \label{sec:intro}
 Floating down a river is easy enough, but imagine scheduling an entire
 season of rafting trips for hundreds of people.  A \textit{scheduling problem}
-occurs when there are start and end times and places for a group of people
+occurs when there are start and end times and start and end locations for a group of people
 or objects. The schedules of the group must be arranged such that all
 participants start and stop as desired. Between the start and stop, they
-must interact in a certain way with each other and their surroundings.
+must follow any rules stated in the problem.
 
-We consider the scheduling problem for a river with visitors who desire to
-raft down it. The goal is to schedule as many visitors as possible.
-Visitors, however, are seeking a relaxing and authentic experience, and
-will become unsatisfied if they do not receive one. While scheduling
-unsatisfied visitors is allowed, we seek to schedule them in such a way
-that as many visitors are as satisfied as possible.
+We consider a scheduling problem for the Big Long River with visitors who desire to
+raft down it. The goal is to schedule as many visitors as possible in a six
+month season.  Visitors depart from First Launch and finish at Final Exit,
+225 miles downstream. They are seeking a relaxing and authentic experience and
+will become dissatisfied if they do not receive one. While scheduling
+dissatisfied visitors is allowed, we seek to schedule them so as many
+visitors are as satisfied as possible.
 
 
 \subsection{Definitions and Terminology}
@@ -109,30 +110,30 @@ that as many visitors are as satisfied as possible.
 % tolerance: brief description plus see section blah
 % carrying capacity
 \begin{itemize}
-\item Big O: (of an algorithm) Also "time complexity." A function relating the
-time it takes to solve a problem to the inputs of the problem. For instance,
-a function whose big O is O(x) computes in linear time.
+\item Big O: (of an algorithm) Also ``complexity.'' A function relating the
+time it takes to solve a problem and the inputs of the problem. For instance,
+a function whose Big O is O(x) computes in linear time.
 
 \item Carrying Capacity: The amount of visitors a river can see in a single
-year, while maintaining the likelihood of successfully scheduling all
-visitors and keeping them satisfied.
+year, while maintaining the likelihood that all visitors will be scheduled and
+remain satisfied.
 
 \item Constraint Satisfaction Problem (CSP): A type of problem solved by
 assigning values to variables. These values must be within specified domains.
 The problem is solved when all variables have values within the specified
-domains -- eg, they have values such that all constraints are satisfied.
+domains -- e.g. they have values that satisfy all constraints.
 
-\item Group: See "visitor."
+\item Group: See ``visitor.''
 
 \item Itinerary: The ordered list of campsites a visitor will stay at each
 night.
 
-\item Non-deterministic Polynomial-Time Hard Problem (NP-Hard): A class of
+\item Non-deterministic Polynomial-Time Hard Problem (NP-hard): A class of
 problems whose solutions, if they exist, behave unpredictably, and are
-provable in polynomial time -- see "Big O." CSPs
+provable in polynomial time -- see ``Big O.'' Constraint Satisfaction Problems
 are a type of NP-hard problem.
 
-\item Visitor: Also "group" or "travel group." A person or a group of people
+\item Visitor: Also ``group.'' A person or a group of people
 seeking to travel the Big Long River by raft. Their raft could be powered
 by oar, or it could be motorized. Visitors are very irritable and will
 become unhappy if they see other visitors, don't get their desired water
@@ -155,7 +156,7 @@ each day. This is done in order to accommodate for other visitors who may
 be in the desired spot.
 
 \item Water Time: Visitors specify how much time they want to spend on the
-water each day. This value is the same for each day of the trip. A visitors'
+water each day. This value is the same for each day of the trip. A visitor's
 satisfaction rating will drop if they are forced to spend
 more or less than this amount of time on the water.
 
@@ -175,60 +176,58 @@ this was assumed to be 128, as provided by literature\cite{NumCampsites}.
 % happiness calculation as satisfaction (show equations)
 \begin{itemize}
 \item Season Length: A six month season is assumed to have 180 days; that is,
-six months times an average of 30 days per month.  Let it also be noted that
-this season is consistent (i.e. there exist no peak visitation months or
-months of higher flow).
+six months times an average of 30 days per month.  Seasons are consistent,
+i.e. there exist no peak visitation months or months of higher river flow.
 
 \item Trips ranging from "6 to 18 nights of camping on the river, start to
 finish" are assumed to allow
 between 7 and 19 days of travel on the river, start to finish.
 
 \item Visitors or groups of visitors travel at a constant speed throughout the
-trip, which is defined only by the type of boat they use. Oar-powered
+trip.  We define this speed by the type of boat they use.  Oar-powered
 rubber rafts travel at 4 mph, and motorized boats travel at 8 mph.
 
-\item Visitors do not separate into more than one group or combine with other
-groups. Therefore, any group of visitors is scheduled the same as a single
-visitor.
+\item No visitor separates into more than one group or combines with other
+groups during the trip.
 
 \item "Contact with other groups of boats on the river" is only counted if
-one group passes another group, or is passed by another group.
+one group passes another group or is passed by another group.
 
 \item Groups are capable of passing one another at any point (i.e. passing is
-not restricted by the width of the river or anything else at anytime).
+not restricted by the width of the river or anything else at any time).
 
-\item The satisfaction of a visitor is affected exclusively by the amount of
-contact with other groups that visitor has, how much water time they have
-compared to their desired amount, and whether or not they
+\item The satisfaction of a group is affected exclusively by the amount of
+contact with other visitors they have, how much water time they have
+compared to the desired amount, and whether or not they
 are actually scheduled.
 
 \item Visitors specify only their starting date, boat type, and water time,
 and only valid values for these parameters. Therefore: They may not start
-before the start of the season, or so close to the end of the season it
+before the start of the season or so close to the end of the season it
 would be impossible for them to finish; they may not have a water time
-such that their trip takes shorter than 7 or longer than 19 days; they may
+such that their trip takes less than 7 or longer than 19 days; they may
 only choose an oar-powered rubber raft or a motorized boat.
 
-\item Visitors are willing to follow the schedule given to them exactly:
+\item Visitors follow the schedule given to them exactly:
 no backtracking, skipping, or slowing down.
 \end{itemize}
 
 
 \section{The Solution}
 \label{sec:model-details}
-Our model is structured as a constraint satisfaction problem solver.
-The general definition
-for such a problem is that - given variables ($X$), values ($D$),
-and constraints ($C$) - find an assignment of value(s) in $D$
-for each $X$ such that all constraints in $C$ are satisfied.  In general
-then, a CSP may be defined as a set $(X,D,C)$.
-Good examples of this problem set are 2-SAT and coloring problems\cite{DynamicCSP}.
+Our solution is structured to solve constraint satisfaction problems,
+specifically of a scheduling nature.  Our working definition for such a
+problem follows: given variables ($X$), values ($D$),
+and constraints ($C$), find an assignment of value(s) in $D$
+for each $X$ such that all constraints in $C$ are satisfied.  Generally
+speaking, a CSP may be defined as a set $(X,D,C)$.
+A good example of a CSP is any map coloring problem\cite{DynamicCSP}.
 
 We view the problem of scheduling rafting trips as a progressive and dynamic
-CSP: each day being a constraint satisfaction problem dependent upon the
+CSP. Each day is a constraint satisfaction problem dependent upon the
 solution to the previous day's problem.  By limiting the values any variable
-may take on and applying efficient algorithms, the CSP becomes tractable and
-we may successfully schedule river trips without the need of unreasonable
+may take on and applying efficient algorithms, the CSP becomes tractable.
+This allows us to successfully schedule river trips without the need of unreasonable
 computing power.
 
 \subsection{Constraint Satisfaction}
@@ -238,77 +237,75 @@ computing power.
 %campsites as values
 %constraints
 
-In general, our approach is to first consider that there are exponentially
-many combinations of  visitors to campsites during their trip.  Many of
-these combinations, however, are invalid given the constraint of no two
- visitors being allowed to stay at the same campsite.  This is perhaps
-the greatest limiting factor in the problem as it applies to all campers
-passing through the same territory on a given day.  This is an $n-ary$
-constraint: the constraint relating $n$ variables.  Such constraints are
-computationally challenging for many problems, but our problem space is limited
-enough that the computations are relatively painless ($O(n^2)$ with $n$ as
-number of  visitors) to pair all campers and detect collisions at any
-campsite.  There were few other constraints involved in solving the problem
-as we were mostly interested in solutions to our schedule.
+Consider that there are exponentially
+many combinations of  visitors to campsites during a season.  Many of
+these combinations, however, are invalid since no two
+ visitors may stay at the same campsite on the same day.  This is perhaps
+the greatest limiting factor in the problem as it applies to all campers.
+This is an $n-ary$
+constraint: a constraint relating $n$ variables.  Such constraints are often
+computationally challenging, but our limited problem space makes
+the computations relatively painless.  We simply pair all campers and detect collisions at any
+campsite ($O(n^2)$ with $n$ as
+number of  visitors).  There are few other constraints involved in solving the problem.
 
-As we have been discussing, each  visitor was considered to be a variable
-in the CSP and campsites were considered the values.  The domain of these
-values (for each  visitor) varied day to day depending upon the distance
-each visitor was capable of travelling.  This travel distance was derived from
+Each visitor is considered to be a variable
+in the CSP and campsites are considered the values.  The domain of
+each visitor's values varies day to day as the visitor travels through the
+campsites.  Travel distance is derived from
 a visitor's average speed of 4 or 8 mph, $v$,  multiplied with a uniformly distributed
-random variable for desired daily time spent on the water, $t$.  This variable is such
-that the travel distance per day would allow the visitor to complete the trip
-within the allotted time of 7-19 days. The following few equations explicitly
+random variable for water time, $t$.  This variable must allow the visitor to complete the trip
+within 7-19 days. The following equations explicitly
 describe these relationships:
 $$v*t=OptimalDayDistance$$
 $$v*t*7\geq L$$
-So in generating any  visitor, we ensure the visitor is reasonably
-parameterized for finishing a trip on time.  Each visitor is also randomly
-assigned, uniformly distributed, a day for departure (dDay) such that
+We ensure generated visitors are reasonably
+parameterized to finish a trip on time.  Each visitor is assigned a random
+uniformly distributed day for departure, $dDay$, such that
 $$v*t*7+dDay\leq S$$
-That is, a visitor's maximum travel speed will allow them to finish before
+A visitor's maximum travel speed will allow them to finish before
 the close of the season.
 
-Visitors are generated en masse using a varitey of uniformly distributed
-variables.  It is possible to load in a file containing visitor information
-so that the program will work on problems of corporeal, rather than testing
-and verification, import.  Once visitors are generated and basic parameters
+Visitors are generated en masse using uniformly distributed
+variables.  It is possible to load a file containing visitor information
+so the program will work on problems of natural rather than simulated
+origin.  Once visitors are generated and basic parameters
 are set (discussed in \textbf{Section \ref{sec:high-params}}) the program begins
-attempting to produce a solution through our CSP solver.
+attempting a solution through our solver.
 
 \subsubsection{Backtracking Search}
-In order to solve a CSP, one must navigate the vast multitude of combinations
-for variables and values. We utilize a backtracking search algorithm to
-assign campsites to our  visitors on a daily basis\cite{AI-Intro}.
+In order to solve a CSP, one must navigate many combinations
+for variables and values. Backtracking search algorithms are often used
+to assign values to variables\cite{AI-Intro}.  We use such an algorithm to
+assign campsites to our  visitors on a daily basis.
 On any given day
-$d$, the solver looks to see which visitors are set to depart on $d$ and
-subsequently adds them to a list, $toDepart$.  All visitors still on the
-river from the previous day are added to $toDepart$, creating a list of all
- visitors requiring some movement for day $d$.  In order to determine
-appropriate movements, the visitors are assigned campsites (analagous to
-distance traveled for the day) one-by-one.  Following
-a pairing, the full day's assignment is checked to see if this pairing is
-consistent with current progress.  If the pairing doesn't violate any other
-existing pairings, it is added to the day's list of assignments.  We then
-proceed to the next  visitor.
+$d$, the solver looks to see which visitors are set to depart that day and
+adds them to a list, $toDepart$.  Then, all visitors left on the
+river from the previous day are added to $toDepart$.  This creates a list of all
+ visitors requiring movement for day $d$.  In order to determine
+appropriate movements, visitors are assigned campsites one-by-one.  Travel
+between campsites is analagous to
+distance traveled for the day.  Following
+a visitor-campsite pairing, the day's assignments are checked to see if this pairing is
+consistent.  If the pairing doesn't conflict with
+existing pairings, it is permanently added to the day's assignments.
+We then proceed to the next visitor.
 
-Encountering failed pairings causes the algorithm to attempt another pairing
-until success is achieved or failure must be returned.  If failure occurs,
-the algorithm returns to the most recent pairing, undoes this pairing, and
-then attempts a new pairing.  The entire process is structured as a
+When pairings fail, the algorithm attempts new pairings
+until success is achieved or no more pairings exist.  In this case,  failure occurs;
+the algorithm backtracks to the previous variable; undoes that pairing; and
+attempts a new pairing for this prior variable.  The entire process is structured as a
 depth-first-search. When a day's assignment is complete, the algorithm creates
-a new CSP for the next day and executes again, deepening the recursing into
-another day.  \textbf{Figure~\ref{fig:searchExample}} highlights the major steps
-involved in this process and provides a simple example.  The example is
-simplified so that only two visitors are being assigned a possibility of two
-campsites.  The algorithm begins by assigning site $1$ to visitor $A$, denoted
-by the diamond below and to the left of the tree-top.  Then assigning
-site $1$ to $B$ is tried but found to fail, so the algorithm assigns site
-$2$ to $B$ (rightmost circle).  At this point, a the day would ``end'' and
-the algorithm would begin attempting to schedule the new day.  In the event
-of a failure on a new day, the algorithm continues jumping up a level, as
-seen in the example, even to the extent of needing to reschedule a previous
-day.
+a new CSP for the next day and executes again.  \textbf{Figure~\ref{fig:searchExample}}
+highlights the major steps
+involved in this process with a simple example.  The algorithm begins by
+assigning site $1$ to visitor $A$, denoted
+by the diamond below and to the left of the tree-top.  Assigning
+site $1$ to $B$ is tried but found to fail.  Instead the algorithm assigns site
+$2$ to $B$ (rightmost circle).  At this point, the day would ``end'' and
+the algorithm would begin scheduling the next day.  In the event
+the next day fails, the algorithm returns to a previous level, as
+seen in the example.  In this case, the previous level is the previous day.
 
 \begin{figure}[h]
   \centering
@@ -318,18 +315,18 @@ day.
   \label{fig:searchExample}
 \end{figure}
 
-Our solver is optimized to attempt maximal satisfaction of the travelers.
+Our solver seeks maximal satisfaction of the travelers.
 That is, the possible campsites a visitor may travel to are presented to the
 solver in order of ideal travel distance.  While not every visitor is guaranteed
-to always travel their desired distance, the algorithm attempts to satisfy
-this ``fuzzy constraint''.  We also calculate the number of encounters
+to travel their desired distance, the algorithm attempts to satisfy it.
+
+We also calculate the number of encounters
 between visitors.  After the itineraries are created, each visitor's campsite
 listing is checked to determine how many visitors passed and were passed by
-this specific visitor.  By combining the amount of erring from ideal travel distance
-and encounters with other visitors, we obtain the aforementioned effect on
-satisfaction.  This effect is calculated post-solution.
-Throughout the course of operation, the solver relies heavily on several
-parameters to relax the problem and make solutions more attainable.
+this specific visitor.  By combining the amount of variation from ideal travel distance
+and encounters with other visitors, we obtain the total effect on
+satisfaction.  The solver relies heavily on several
+parameters to relax the problem, making solutions more attainable.
 
 \subsection{Usage of High-Level Parameters}
 \label{sec:high-params}
@@ -337,39 +334,31 @@ parameters to relax the problem and make solutions more attainable.
 % river length (maybe)
 % days in the season
 % number of sites
-Given some of the information in the prompt and our findings, as discussed
-in \textbf{Sections \ref{sec:defs}} and \textbf{\ref{sec:assumptions}}, our program
-is designed to adjust its operation depending on various conditions.  The
-parameter of greatest variability, number of  visitors, effects how
-many visitors we generate at the beginning, the load distribution on portions
-of the season, and some of the satisfaction scores for other visitors. Varying
-this value was crucial in analyzing the model, discussed in \textbf{Section
-\ref{sec:results}}.
+Many values tend to be static.  These include river length, number of days in
+the season, and number of campsites.  While each of these values is capable of
+drastically affecting the outcome of a given attempt, this effect is limited
+by a well-defined range (see \textbf{Section \ref{sec:assumptions}}).  There
+are likely optimal values, but finding these would likely place our
+problem into the realm of intractable problems.  In an attempt to capture
+the complexity of this system, we have introduced a unique variable, $tolerance$.
 
-Values that tend to be static include the river length, number of days in
-the season, and number of campsites.  While each of these is capable of
-drastically effecting the outcome of any given attempt, the values have a
-well-defined range (see \textbf{Section \ref{sec:assumptions}}).  The problem
-could be generalized beyond these variables such that the CSP solver attempts
-to find optimal values for these as well, but this would likely place our
-problem into the realm of truly NP-hard problems.
-
-
-\subsubsection{Tolerance}
-Built into the algorithm is a $tolerance$ variable: designed to create a
-range for the distance a  visitor may cross in a given day.  This variable
+$Tolerance$ is designed to create a
+range for the distance a  visitor may travel in a given day.  This variable
 is straightforward at the outset but provides several neat nuances for additional
-complexity in the solution.  The introduction of a range to the CSP allows
-for a larger domain of solutions and, therefore, variability.  In our case,
-we desire such flexibility, to account for the real-world implications of
-directing human beings.  Tolerance extends within the model as a sort of
-aggregate for many of the various instances where we might expect variability
---- such as inclement weather, cancellations, or slow  visitors---,
-without having to introduce variability into every aspect.  This may seem
-like a stretch of the model's design, but any fuzziness for
-any aspect introduces variability into the solutions.  We are satisfied that
-tolerance is an opportunistic variable for allowing more visitors to be
-scheduled and thus for the rafting season to be enjoyed by more individuals.
+complexity in the solution.  The introduction of a value range allows
+for a larger domain of solutions and variability.  We desire such flexibility
+to account for the real-world uncertainty of
+directing human beings.  Tolerance extends as an
+aggregate for many of the instances where we might expect variability
+---such as inclement weather, cancellations, or slow  visitors---
+without having to introduce additional parameters.  Tolerance is a
+satisfying opportunistic variable for allowing more visitors to be
+scheduled.  It allows for the rafting season to be enjoyed by more individuals.
+
+It is important to note a lack of tolerance often creates
+problems with no solutions. With visitors locked between one of two
+travel distances, scheduling becomes virtually impossible for all but the
+smallest number of visitors.
 
 
 
@@ -378,39 +367,45 @@ scheduled and thus for the rafting season to be enjoyed by more individuals.
 % address the question of how to mix the visitors (i.e. oar versus motorized)
 \subsection{General Expectations}
 \label{sec:expectations}
-Before creating the model we developed a few “common sense” expectations of
-the results. For instance, it makes sense that increasing the visitor size
-would make it harder to schedule each visitor at their desired time. The more
-visitors one is trying to schedule, the faster the schedule fills up. However,
-as the number of visitors on the river during a season increases, it would
-become more and more likely that visitors would pass each other. Passing
-would even be mandatory if the visitors are travelling at different daily
-speeds; consider a visitor with a daily speed of 8 mph leaving a few days
-after a visitor travelling at 4 mph.
+Before creating the model we developed a few ``common sense'' expectations of
+the results.
+\begin{itemize}
+\item Increasing the visitor size
+would make it harder to schedule each visitor at the desired time. The more
+visitors one is trying to schedule, the faster the schedule fills up.
 
-We also expected that as the tolerance for which campsite visitors stayed at
-each night increased, so would the ease of scheduling each visitor. The
+\item As the number of visitors on the river during a season increases, it
+becomes increasingly likely visitors will pass each other. Passing
+is a necessity if the visitors are traveling at different daily
+speeds.  Consider a visitor with a daily speed of 8 mph leaving a few days
+after a visitor traveling at 4 mph.
+
+\item As tolerance increases, so will the ease of scheduling each visitor. The
 greater the tolerance, the greater the likelihood of finding a site to stay
-at if other visitors are also in the area. It also “made sense” to us, however,
-that an increase in tolerance would cause a decrease in overall happiness.
-An increase in tolerance would allow visitors to travel less than or more
-than their desired time each day. This would decrease their happiness.
+at if other visitors are also in the area.
 
-It was expected that assigning more visitors to motor boats (those that travel
-at 8mph) would increase the success rate. Visitors that travel faster would
-spend fewer days on the river, freeing up space for other campers faster,
-and allowing more visitors to travel on the river each season. We also
-predicted that seasons with more uniform visitor speeds (e.g. seasons where
-all visitors travel at 4mph, or where all visitors travel at 8mph) would be
-happier. This is because visitors travelling at the same speed are less likely
-to pass each other, or to want to stay at the same campsite on the same night.
-The greater the variation in visitor speed, the more likely it is faster
-visitors would have to pass slower visitors.
+\item An increase in tolerance will cause a decrease in overall happiness.
+An increase in tolerance will allow visitors to travel less than or more
+than their desired time each day. Thus decreasing their overall satisfaction.
+%WE GOT TO USE THUS!!!!!
+
+\item Assigning more visitors to motor boats (those that travel
+at 8mph) will increase the success rate. Visitors that travel faster will
+spend fewer days on the river, leaving more space for other visitors.
+
+\item Seasons with less variability in visitor speeds (e.g. seasons where
+all visitors travel at 4mph, or where all visitors travel at 8mph) will result
+in greater satisfaction. Visitors traveling at the same speed are less likely
+to pass each other or to want to stay at the same campsite on the same night.
+Greater variation in group speeds will increase the frequency of these
+conflicts.
+\end{itemize}
 
 \subsection{Results}
 \label{sec:results}
-Generally speaking, the results of the model were in line with our
-expectations. For seasons with a 2-site camping tolerance, the success rate
+The results of the model tended to be in line with our
+expectations(\textbf{Section \ref{sec:expectations}}). For seasons with a
+2-site camping tolerance, the success rate
 was seen to decrease as the number of visitors increased
 (\textbf{Figure~\ref{fig:sparklines} Spark 1}).
 
@@ -475,7 +470,7 @@ of 4 mph boats increased, both success rate and happiness steadily decreased.
 With half rowboats and half motorboats, the success rate was 92 percent and
 the happiness 72 percent. With a 9:1 ratio of rowboats to motorboats, the
 success rate of the season was only 89.9 percent. However, there is a jump
-in success rate to 99 percent once all visitors are travelling at 4 mph. This
+in success rate to 99 percent once all visitors are traveling at 4 mph. This
 jump in successes is not accompanied by a jump in happiness; with all
 rowboats, the happiness is only 70 percent.
 
@@ -581,6 +576,8 @@ in satisfaction as visitors as forced to travel unfortunate distances; any
 smaller tolerance greatly decreases the chance of a successful schedule for
 any large number of visitors. Any more than 300 visitors is likely to drop
 both the chance of a successful season and the happiness of any visitors.
+
+DO SOMETHING WITH X-300 BLHA BLAH BLAH
 
 
 \newpage

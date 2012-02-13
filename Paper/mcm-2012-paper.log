@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2012/dev/Arch Linux) (format=pdflatex 2012.2.6)  13 FEB 2012 01:13
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2012/dev/Arch Linux) (format=pdflatex 2012.2.6)  13 FEB 2012 01:59
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -598,19 +598,19 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [1]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 114.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 113.
 
  (/usr/share/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 114.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 113.
  [2] [3] [4] [5]
 <imgs/searchExample.png, id=30, 430.60875pt x 430.60875pt>
 File: imgs/searchExample.png Graphic file (type png)
 
 <use imgs/searchExample.png>
-Package pdftex.def Info: imgs/searchExample.png used on input line 317.
+Package pdftex.def Info: imgs/searchExample.png used on input line 314.
 (pdftex.def)             Requested size: 215.30383pt x 215.30383pt.
 
 
@@ -621,10 +621,10 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 File: imgs/sparklines.png Graphic file (type png)
 
 <use imgs/sparklines.png>
-Package pdftex.def Info: imgs/sparklines.png used on input line 421.
+Package pdftex.def Info: imgs/sparklines.png used on input line 418.
 (pdftex.def)             Requested size: 394.99707pt x 36.58633pt.
 
-Overfull \hbox (13.22675pt too wide) in paragraph at lines 447--453
+Overfull \hbox (13.22675pt too wide) in paragraph at lines 444--450
 []\OT1/cmr/m/n/10.95 For sea-sons with a 1-site tol-er-ance, the ef-fect of vis
 -i-tor size was seen to in-crease(\OT1/cmr/bx/n/10.95 Figure 2[]
  []
@@ -635,7 +635,7 @@ File: imgs/Graph_VistorsChanges_Tolerance2.png Graphic file (type png)
 
 <use imgs/Graph_VistorsChanges_Tolerance2.png>
 Package pdftex.def Info: imgs/Graph_VistorsChanges_Tolerance2.png used on input
- line 495.
+ line 492.
 (pdftex.def)             Requested size: 366.3214pt x 238.04114pt.
 
 <imgs/Graph_VistorsChanges_Tolerance1.png, id=48, 606.01407pt x 396.7322pt>
@@ -643,7 +643,7 @@ File: imgs/Graph_VistorsChanges_Tolerance1.png Graphic file (type png)
 
 <use imgs/Graph_VistorsChanges_Tolerance1.png>
 Package pdftex.def Info: imgs/Graph_VistorsChanges_Tolerance1.png used on input
- line 506.
+ line 503.
 (pdftex.def)             Requested size: 363.61125pt x 238.04114pt.
 
 
@@ -673,7 +673,7 @@ exmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts
 msfonts/cm/cmr17.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8
 .pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/sha
 re/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on mcm-2012-paper.pdf (15 pages, 172726 bytes).
+Output written on mcm-2012-paper.pdf (15 pages, 173507 bytes).
 PDF statistics:
  95 PDF objects out of 1000 (max. 8388607)
  63 compressed objects within 1 object stream
