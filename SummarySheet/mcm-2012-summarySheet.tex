@@ -36,7 +36,7 @@
 \pagestyle{fancy} % options: empty , plain , fancy
 \renewcommand{\headrulewidth}{0pt} % customise the layout...
 \lhead{Team \# 16677}\chead{}\rhead{Page \thepage\ of \pageref{LastPage}}
-\lfoot{}\cfoot{\thepage}\rfoot{}
+\lfoot{}\cfoot{}\rfoot{}
 
 %%% SECTION TITLE APPEARANCE
 %\usepackage{sectsty}
@@ -57,49 +57,49 @@
 %\date{}
 
 \begin{document}
-We approach the challenge of scheduling river rafting trips throughout a 6
-month season as an assignment problem.  That is, for each day we seek to
-assign each travelling group (boats travelling together) to a campsite
-destination such that no two groups are assigned to reach the same site on
-the same day.  It is also desirable that groups should encounter each other
-as little as possible, epitomizing the outdoor experience, and that we
-should be able to assign as many groups as possible throughout the season.
-Based on research and necessity, we assume that there are approximately 100
-camping sites; groups are capable of passing one another at any point; the
-river does not increase travel speed at any time in the trip; a group stays
-as a unit throughout the entire length of the river; and the system is
-deterministic, with travelling groups allowing us to dictate their exact
+We approach the challenge of scheduling river rafting trips as an
+assignment problem. That is, for each day of the six month season we seek to
+assign each visitor a campsite.
+No two visitors are allowed the same site on
+the same day.  While it is desirable that groups encounter each other
+as little as possible, epitomizing the outdoor experience, this is second to
+assigning as many groups as possible.
+Based on research and necessity, we assume there are 128
+camp sites; groups are capable of passing one another at any point;
+travel speed is constant; a group stays
+as a unit throughout the entire length of the river; and, excluding
+departure date, visitors allow us to dictate their exact
 schedule.  While there are crafts that travel only 4 or
 only 8 mph, we relax the problem by introducing variable times on the river
-and $tolerance$ (possible deviation on number of campsites passed each
-day) for all groups.  These relaxations lead to a significantly higher
-number of possible assignments.
+each day,
+and by introducing a $tolerance$ on the number of campsites passed each day.
+These relaxations allow a larger number of possible assignments.
 
-The program we wrote utilizes constrained but randomly generated travel
+The program we wrote utilizes reasonable randomly generated travel
 groups to conduct simulations in testing the solution algorithm.  Our
 solution approaches scheduling as a constraint satisfaction problem (CSP).
-This class of problem seeks to assign values to variables: campsites to
-travelling groups in our case.  This approach allows us to explore solutions
-with preference for group satisfaction (proximity of actual schedule to
-ideal trip) or any other number of variables.  Additionally, we shaped the
-problem such that each day is a CSP in and of itself, creating a dynamic CSP
-where each day depends on the last.  Our model found that not all numbers of
-travelling groups are possible under ``standard'' conditions, but we expected
-this and still managed to find promising results.
+This class of problem seeks to assign values to variables.  In our case,
+this means assigning campsites to visitors once per day.
+This allows us to explore solutions
+with preference for visitor satisfaction or any other number of variables.
+Additionally, we shaped the
+problem such that the season is a CSP in and of itself.  This creates a dynamic
+CSP where each day depends upon the last.  Our model suggests a limit to the
+number of visitors possible under ``standard'' conditions.
 
-In analyzing the model, we focused primarily on the size of groups possible
+In analyzing the model, we focused primarily on the number of visitors possible
 in a given season.  Our findings suggested that a successful schedule is nearly
-always found for 200 groups in a season, with tolerance 2.  It is certainly
-possible to schedule many more groups in a season, but there is a diminishing
-probability that a schedule will be found.  At about 300 travelling groups,
-the scheduling success rate begins to drop, sharply, below 91\% until
-around 600 groups the success rate begins to level off, asymptotically, at
-5\%.  We note that this drop in success roughly follows an inverse of the
-possible number of schedules given group size (an exponential growth) and
-that satisfaction is relatively equivalent to success rate.  Lastly, our
+always found with 200 visitors per season and a 2-site tolerance.  While it is
+possible to schedule many more groups per season, there is a diminishing
+probability a valid schedule will be found.  At 300 visitors per season,
+the probability of successfully scheduling a season begins to drop sharply.
+It drops below 91\% and continues decreasing
+until reaching an asymptote of 5\% at 600 visitors per
+season. As the solution space grows exponentially, the success rate decreases
+exponentially.  We also considered satisfaction and found it
+decreased with success rate.  Lastly, our
 model found that utilizing more motorboats than oar-powered rafts led to a
-greater number of successes.  Further discussion and analysis within the
-paper addresses the greater implications of these results along with possible
-extensions to the model.
+greater number of successes.  The paper addresses further implications of
+these results along with possible extensions to the model.
 
 \end{document}
