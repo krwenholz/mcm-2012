@@ -81,10 +81,33 @@
 
 \subsection{Introduction}
 \label{sec:intro}
+Scheduling problems are a regular and common task for today's computers.
+Asking secretaries or other individuals to devise a functioning arrangement
+of times, places, and any other number of factors seems almost inhumane given
+that the use of technology simplifies and expedites the process.  Applying
+such technology to the task of scheduling rafters for a season poses unique
+challenges and variables.  Park management literature tends to focus
+on minimizing the ecological impact of visitors to a river,
+not scheduling these visitors\cite{ColoradoRiverPaper}.  It is possible for
+our model to address some parts of this approach
+(\textbf{Section \ref{sec:extensions}}), but we are more interested in
+maximum visitation.
+
+Our aim is to determine the maximum number of individuals we may schedule
+for trips along the Big Long River: such that no campsites may be shared
+on a given night and we desire to have the most satisfied individuals possible.
+That is, satisfaction is diminished when visitors come into contact with other
+groups or are forced to travel further than they desire in a given day
+(travelling at their own pace is important).  We approach the problem as
+one of constraint satisfaction, a class of concepts from artificial intelligence.
+Many scheduling problems may be approached with local search or even genetic
+algorithms.  We, however, appreciate the elegance achieved when
+rephrasing this as a constraint satisfaction problem.
+
 
 \subsection{Definitions and Terminology}
 \label{sec:defs}
-% CSP
+% CSP a group of generally NP-hard problems.
 % travel group
 % itinerary
 % NP-hard
@@ -93,25 +116,22 @@
 % days in the season = S
 % happiness as satisfaction: related to encounters and actual trip speed
 % tolerance: brief description plus see section blah
+% carrying capacity
+
 
 \subsection{Assumptions and Simplifications}
 \label{sec:assumptions}
+% season length
 % days traveled opposed to nights
 % groups
 % encounters
 % happiness calculation as satisfaction (show equations)
 
 
-\subsection{General Commentary}
-\label{sec:prelim-comments}
-
-
 \section{Details of the Model}
 \label{sec:model-details}
-Phrasing the problem in terms of scheduling allows us to harness the power
-of existing approaches and algorithms developed within Computer Science.
-We eventually settled on structuring the model as a constraint satisfaction
-problem, a group of generally NP-hard problems.  The general definition
+Our model is structured as a constraint satisfaction problem solver.
+The general definition
 for such a problem is that - given variables ($X$), values ($D$),
 and constraints ($C$) - find an assignment of value(s) in $D$
 for each $X$ such that all constraints in $C$ are satisfied.
@@ -147,7 +167,7 @@ as we were mostly interested in solutions to our schedule.
 As we have been discussing, each travel group was considered to be a variable
 in the CSP and campsites were considered the values.  The domain of these
 values (for each travel group) varied day to day depending upon the distance
-each group was capable of traveling.  This travel distance was derived from
+each group was capable of travelling.  This travel distance was derived from
 a group's average speed of 4 or 8 mph, $v$,  multiplied with a uniformly distributed
 random variable for desired daily time spent on the water, $t$.  This variable is such
 that the travel distance per day would allow the group to complete the trip
@@ -191,25 +211,24 @@ then attempts a new pairing.  The entire process is structured as a
 depth-first-search. When a day's assignment is complete, the algorithm creates
 a new CSP for the next day and executes again, deepening the recursing into
 another day.  \textbf{Figure~\ref{fig:searchExample}} highlights the major steps
-involved in this process and provides a simple example.  In the example,
-the river length is only for two campsites; there are only two travel groups;
-and only the observed states are shown.  Each level of the tree represents
-the possible assignments to a single travel group.  The entire left side
-of the tree is expanded to a solution, in which case the solver would return
-a schedule for each group along with various statistics.
-
-BETTER DISCUSSION OF THE FIGURE AND IT'S CONSEQUENCES
+involved in this process and provides a simple example.  The example is
+simplified so that only two groups are being assigned a possibility of two
+campsites.  The algorithm begins by assigning site $1$ to group $A$, denoted
+by the diamond below and to the left of the tree-top.  Then assigning
+site $1$ to $B$ is tried but found to fail, so the algorithm assigns site
+$2$ to $B$ (rightmost circle).  At this point, a the day would ``end'' and
+the algorithm would begin attempting to schedule the new day.  In the event
+of a failure on a new day, the algorithm continues jumping up a level, as
+seen in the example, even to the extent of needing to reschedule a previous
+day.
 
 \begin{figure}[h]
   \centering
-  %\includegraphics[scale=0.5]{searchExample.png}
+  \includegraphics[scale=0.5]{imgs/searchExample.png}
   \caption{An example of the backtracking algorithm's attempt to schedule
     travel groups $A$ and $B$ with campsites $1$ and $2$.}
   \label{fig:searchExample}
 \end{figure}
-%%%%%
-% INCLUDE SEARCHEXAMPLE FIGURE
-%%%%%
 
 Our solver is optimized to attempt maximal satisfaction of the travelers.
 That is, the possible campsites a group may travel to are presented to the
@@ -273,9 +292,96 @@ scheduled and thus for the rafting season to be enjoyed by more individuals.
 
 \subsection{General Expectations}
 \label{sec:expectations}
+Before creating the model we developed a few “common sense” expectations of
+the results. For instance, it “makes sense” that increasing the group size
+would make it harder to schedule each group at their desired time. The more
+groups one is trying to schedule, the faster the schedule fills up. However,
+as the number of groups on the river during a season increases, it would
+become more and more likely that groups would pass each other. Passing
+would even be mandatory if the groups are travelling at different daily
+speeds; consider a group with a daily speed of 8 mph leaving a few days
+after a group travelling at 4 mph.
+
+We also expected that as the tolerance for which campsite groups stayed at
+each night increased, so would the ease of scheduling each group. The
+greater the tolerance, the greater the likelihood of finding a site to stay
+at if other groups are also in the area. It also “made sense” to us, however,
+that an increase in tolerance would cause a decrease in overall happiness.
+An increase in tolerance would allow groups to travel less than or more
+than their desired time each day. This would decrease their happiness.
+
+It was expected that assigning more groups to motor boats (those that travel
+at 8mph) would increase the success rate. Groups that travel faster would
+spend fewer days on the river, freeing up space for other campers faster,
+and allowing more groups to travel on the river each season. We also
+predicted that seasons with more uniform group speeds (e.g. seasons where
+all groups travel at 4mph, or where all groups travel at 8mph) would be
+happier. This is because groups travelling at the same speed are less likely
+to pass each other, or to want to stay at the same campsite on the same night.
+The greater the variation in group speed, the more likely it is faster
+groups would have to pass slower groups.
 
 \subsection{Results}
 \label{sec:results}
+Generally speaking, the results of the model were in line with our
+expectations. For seasons with a 2-site camping tolerance, the success rate
+was seen to decrease as the number of groups increased. See sparkline 1 in
+figure X at the bottom of this page.
+
+The success rate was one-hundred percent up for seasons with 5, 50, and 100
+groups. Once the number of groups per season increased past 100, the
+success rate began decreasing at an increasing rate. The success rate
+dropped from 100 percent to 91 percent between 100 and 300 campers, then
+from 91 percent to 25 percent between 300 and 500 campers. For seasons with
+more than 500 campers, the success rate leveled off, appearing to have an
+asymptote just above zero percent. The success rate for a season with 600
+groups was five percent.
+
+Similarly, the average happiness of each of the groups decreased as the
+number of groups increased. See figure X, sparkline 2 at the bottom of
+this page. Once the number of groups per season increased past 100, the
+happiness rate began decreasing at an increasing rate. The happiness dropped
+from 97.9 percent to 89.4 percent between 100 and 300 campers, then from 89.4
+percent to 24.5 percent between 300 and 500 campers. For seasons with more
+than 500 campers, the happiness rate leveled off, appearing to have an
+asymptote just above zero percent. The happiness for a season with 600 groups
+was 4.9 percent.
+
+For seasons with a  1-site tolerance, the effect of group size was seen to
+increase. See sparkline 3 in figure X at the bottom of this page. Both the
+success rate and happiness of groups began dropping with a group size of
+only 50 people. The success rate dropped from 100 percent to 96 percent
+when group sized increased from 5 to 50 groups per season. By just 250
+groups, both the success rate and the happiness were zero percent.
+
+The tolerance for which campsite groups stayed at each night had a positive
+effect on success rate of the scheduler and happiness of the groups. See
+sparkline 4, figure X, at the bottom of the previous page. For seasons with
+200 groups, a tolerance of zero campsites had a success rate of 0 percent
+and happiness of zero percent. Increasing the tolerance to one campsite
+resulted in a success rate of 52 percent and a happiness of 4.9 percent.
+Increasing the tolerance to two campsites had the greatest effect, raising
+success rate to 97.8 percent and happiness to 95.9 percent. With any greater
+tolerances, the success rate was one-hundred percent, and the happiness
+leveled off at 97.8 percent.
+
+For seasons with 500 groups, a greater tolerance was needed to achieve
+similar results (sparkline 5 in figure X, page Y). A tolerance of 0 campsites
+had a success rate of 0; a tolerance of 1 campsite had a success rate of
+only 2.6 percent; 2 campsites, 28 percent; 3 campsites, 90 percent. The
+success rate was only 100 percent with a tolerance of greater than 4 campsites,
+and the happiness was 98 percent.
+
+Assigning more groups to motorboats (those that travel at 8 mph) was seen
+to increase the success rate. For a homogeneous season of 8 mph groups, the
+success rate was 98.2 percent and the happiness 74 percent. At the number
+of 4 mph boats increased, both success rate and happiness steadily decreased.
+With half rowboats and half motorboats, the success rate was 92 percent and
+the happiness 72 percent. With a 9:1 ratio of rowboats to motorboats, the
+success rate of the season was only 89.9 percent. However, there is a jump
+in success rate to 99 percent once all groups are travelling at 4 mph. This
+jump in successes is not accompanied by a jump in happiness; with all
+rowboats, the happiness is only 70 percent.
 
 \subsection{Addressing Carrying Capacity}
 \label{sec:capacity}
@@ -283,7 +389,7 @@ scheduled and thus for the rafting season to be enjoyed by more individuals.
 \subsection{Sensitivity Analysis}
 \label{sec:sensitivity}
 
-\section{Conclusions}
+\section{Final Thoughts}
 \label{sec:conclusions}
 
 \subsection{Advantages to the Approach}
@@ -293,15 +399,16 @@ scheduled and thus for the rafting season to be enjoyed by more individuals.
 \label{sec:cons}
 
 \subsection{Future Extensions}
-
+\label{sec:extensions}
 
 \subsection{Final Recommendations}
 \label{sec:final}
 
 
+\newpage
 
 
 \bibliographystyle{amsplain}
-\bibliography{MCM2012.bib}
+\bibliography{mcm-2012-paper.bib}
 
 \end{document}
