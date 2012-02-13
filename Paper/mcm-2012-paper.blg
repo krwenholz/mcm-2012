@@ -3,44 +3,48 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: mcm-2012-paper.aux
 The style file: amsplain.bst
 Database file #1: mcm-2012-paper.bib.bib
-You've used 1 entry,
+Warning--entry type for "NumCampsites" isn't style-file defined
+--line 29 of file mcm-2012-paper.bib.bib
+Warning--missing publisher in DynamicCSP
+You've used 4 entries,
             2213 wiz_defined-function locations,
-            506 strings with 4134 characters,
-and the built_in function-call counts, 244 in all, are:
-= -- 15
-> -- 7
+            522 strings with 4448 characters,
+and the built_in function-call counts, 944 in all, are:
+= -- 66
+> -- 40
 < -- 0
-+ -- 3
-- -- 2
-* -- 13
-:= -- 45
-add.period$ -- 1
-call.type$ -- 1
-change.case$ -- 4
++ -- 16
+- -- 12
+* -- 54
+:= -- 160
+add.period$ -- 4
+call.type$ -- 4
+change.case$ -- 18
 chr.to.int$ -- 0
-cite$ -- 1
-duplicate$ -- 12
-empty$ -- 25
-format.name$ -- 2
-if$ -- 46
+cite$ -- 5
+duplicate$ -- 47
+empty$ -- 97
+format.name$ -- 12
+if$ -- 194
 int.to.chr$ -- 0
-int.to.str$ -- 1
-missing$ -- 3
-newline$ -- 13
-num.names$ -- 2
-pop$ -- 8
+int.to.str$ -- 4
+missing$ -- 10
+newline$ -- 22
+num.names$ -- 8
+pop$ -- 38
 preamble$ -- 1
-purify$ -- 3
+purify$ -- 14
 quote$ -- 0
-skip$ -- 7
+skip$ -- 30
 stack$ -- 0
-substring$ -- 5
-swap$ -- 1
+substring$ -- 20
+swap$ -- 5
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 2
-warning$ -- 0
-while$ -- 2
-width$ -- 2
-write$ -- 17
+type$ -- 10
+warning$ -- 1
+while$ -- 8
+width$ -- 5
+write$ -- 39
+(There were 2 warnings)

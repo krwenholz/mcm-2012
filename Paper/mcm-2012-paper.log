@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2012/dev/Arch Linux) (format=pdflatex 2012.2.6)  12 FEB 2012 21:23
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2012/dev/Arch Linux) (format=pdflatex 2012.2.6)  13 FEB 2012 01:13
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -597,40 +597,86 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[1] [2] [3] <imgs/searchExample.png, id=23, 430.60875pt x 430.60875pt>
+[1]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 114.
+
+ (/usr/share/texmf-dist/tex/latex/base/omscmr.fd
+File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 114.
+ [2] [3] [4] [5]
+<imgs/searchExample.png, id=30, 430.60875pt x 430.60875pt>
 File: imgs/searchExample.png Graphic file (type png)
 
 <use imgs/searchExample.png>
-Package pdftex.def Info: imgs/searchExample.png used on input line 224.
+Package pdftex.def Info: imgs/searchExample.png used on input line 317.
 (pdftex.def)             Requested size: 215.30383pt x 215.30383pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[4] [5 <./imgs/searchExample.png>] [6] [7] (./mcm-2012-paper.bbl)
+[6] [7 <./imgs/searchExample.png>] [8]
+<imgs/sparklines.png, id=43, 438.8897pt x 40.65187pt>
+File: imgs/sparklines.png Graphic file (type png)
+
+<use imgs/sparklines.png>
+Package pdftex.def Info: imgs/sparklines.png used on input line 421.
+(pdftex.def)             Requested size: 394.99707pt x 36.58633pt.
+
+Overfull \hbox (13.22675pt too wide) in paragraph at lines 447--453
+[]\OT1/cmr/m/n/10.95 For sea-sons with a 1-site tol-er-ance, the ef-fect of vis
+-i-tor size was seen to in-crease(\OT1/cmr/bx/n/10.95 Figure 2[]
+ []
+
+[9 <./imgs/sparklines.png>]
+<imgs/Graph_VistorsChanges_Tolerance2.png, id=47, 610.53094pt x 396.7322pt>
+File: imgs/Graph_VistorsChanges_Tolerance2.png Graphic file (type png)
+
+<use imgs/Graph_VistorsChanges_Tolerance2.png>
+Package pdftex.def Info: imgs/Graph_VistorsChanges_Tolerance2.png used on input
+ line 495.
+(pdftex.def)             Requested size: 366.3214pt x 238.04114pt.
+
+<imgs/Graph_VistorsChanges_Tolerance1.png, id=48, 606.01407pt x 396.7322pt>
+File: imgs/Graph_VistorsChanges_Tolerance1.png Graphic file (type png)
+
+<use imgs/Graph_VistorsChanges_Tolerance1.png>
+Package pdftex.def Info: imgs/Graph_VistorsChanges_Tolerance1.png used on input
+ line 506.
+(pdftex.def)             Requested size: 363.61125pt x 238.04114pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[10] [11 <./imgs/Graph_VistorsChanges_Tolerance2.png>] [12 <./imgs/Graph_Vistor
+sChanges_Tolerance1.png>] [13] (./mcm-2012-paper.bbl)
 
 AED: lastpage setting LastPage
-[8] (./mcm-2012-paper.aux) ) 
+[14] (./mcm-2012-paper.aux) ) 
 Here is how much of TeX's memory you used:
- 4581 strings out of 493629
- 64544 string characters out of 3148779
- 135003 words of memory out of 3000000
- 7793 multiletter control sequences out of 15000+200000
+ 4618 strings out of 493629
+ 65429 string characters out of 3148779
+ 136036 words of memory out of 3000000
+ 7824 multiletter control sequences out of 15000+200000
  10451 words of font info for 39 fonts, out of 3000000 for 9000
  831 hyphenation exceptions out of 8191
- 44i,11n,43p,254b,277s stack positions out of 5000i,500n,10000p,200000b,50000s
-</usr/share/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmbx10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
-</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmr17.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.
-pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/shar
-e/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on mcm-2012-paper.pdf (9 pages, 145534 bytes).
+ 44i,11n,43p,313b,281s stack positions out of 5000i,500n,10000p,200000b,50000s
+</usr/share/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmbx10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
+></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmr17.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8
+.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/sha
+re/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
+Output written on mcm-2012-paper.pdf (15 pages, 172726 bytes).
 PDF statistics:
- 73 PDF objects out of 1000 (max. 8388607)
- 50 compressed objects within 1 object stream
+ 95 PDF objects out of 1000 (max. 8388607)
+ 63 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 6 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 21 words of extra memory for PDF output out of 10000 (max. 10000000)
 

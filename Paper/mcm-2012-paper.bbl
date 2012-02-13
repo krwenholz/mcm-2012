@@ -7,9 +7,20 @@
 \providecommand{\href}[2]{#2}
 \begin{thebibliography}{1}
 
+\bibitem{DynamicCSP}
+R.~Dechter and A.~Dechter, \emph{Belief maintenance in dynamic constraint
+  networks in proc. of aaai-88}, 1988.
+
+\bibitem{NumCampsites}
+Will Hansen, \emph{{Whitewater Campsites} colorado--grand canyon}, 2009.
+
 \bibitem{ColoradoRiverPaper}
 Catherine A.~Roberts Randy~Gimblett, \emph{Integrating gis and agent based
   modeling techniques for understanding social and ecological processes},
   Oxford Press, 2000.
+
+\bibitem{AI-Intro}
+Stuart~J. Russell and Peter Norvig, \emph{Artificial intelligence: A modern
+  approach}, Prentice Hall, 2010.
 
 \end{thebibliography}
