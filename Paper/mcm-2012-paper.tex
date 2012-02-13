@@ -40,7 +40,7 @@
 \pagestyle{fancy} % options: empty , plain , fancy
 \renewcommand{\headrulewidth}{0pt} % customise the layout...
 \lhead{Team \# 16677}\chead{}\rhead{Page \thepage\ of \pageref{LastPage}}
-\lfoot{}\cfoot{\thepage}\rfoot{}
+\lfoot{}\rfoot{}\cfoot{}
 
 %%% SECTION TITLE APPEARANCE
 %\usepackage{sectsty}
@@ -148,6 +148,9 @@ can't be scheduled.
 
 \item Season: A six month season is assumed to have 180 days; that is,
 six months times an average of 30 days per month.
+
+\item Success Rate: The likelihood a season will have a valid schedule
+given certain parameters.
 
 \item Tolerance: The amount of campsites a visitor's travel plan can be
 altered by. For instance, a tolerance of 1 would allow a visitor desiring
@@ -404,8 +407,10 @@ conflicts.
 \subsection{Results}
 \label{sec:results}
 The results of the model tended to be in line with our
-expectations(\textbf{Section \ref{sec:expectations}}). For seasons with a
-2-site camping tolerance, the success rate
+expectations (\textbf{Section \ref{sec:expectations}}). Our baseline
+values for parameters are in \textbf{Section \ref{sec:assumptions}}.
+For seasons with a
+2-site tolerance, the success rate
 was seen to decrease as the number of visitors increased
 (\textbf{Figure~\ref{fig:sparklines} Spark 1}).
 
@@ -418,11 +423,11 @@ was seen to decrease as the number of visitors increased
   \label{fig:sparklines}
 \end{figure}
 
-The success rate was one-hundred percent up for seasons with 5, 50, and 100
+The success rate was 100\% for seasons with 5, 50, and 100
 visitors. Once the number of visitors per season increased past 100, the
 success rate began decreasing at an increasing rate. The success rate
-dropped from 100 percent to 91 percent between 100 and 300 campers, then
-from 91 percent to 25 percent between 300 and 500 campers. For seasons with
+dropped from 100\% to 91\% between 100 and 300 campers, then
+from 91\% to 25\% between 300 and 500 campers. For seasons with
 more than 500 campers, the success rate leveled off, appearing to have an
 asymptote just above zero percent. The success rate for a season with 600
 visitors was five percent.
@@ -431,57 +436,61 @@ Similarly, the average happiness of each of the visitors decreased as the
 number of visitors increased(\textbf{Figure~\ref{fig:sparklines} Spark 2}).
 Once the number of visitors per season increased past 100, the
 happiness rate began decreasing at an increasing rate. The happiness dropped
-from 97.9 percent to 89.4 percent between 100 and 300 campers, then from 89.4
-percent to 24.5 percent between 300 and 500 campers. For seasons with more
+from 97.9\% to 89.4\% between 100 and 300 campers, then from 89.4
+percent to 24.5\% between 300 and 500 campers. For seasons with more
 than 500 campers, the happiness rate leveled off, appearing to have an
 asymptote just above zero percent. The happiness for a season with 600 visitors
-was 4.9 percent.
+was 4.9\%.
 
 For seasons with a  1-site tolerance, the effect of visitor size was seen to
 increase(\textbf{Figure~\ref{fig:sparklines} Spark 3}). Both the
 success rate and happiness of visitors began dropping with a visitor size of
-only 50 people. The success rate dropped from 100 percent to 96 percent
+only 50 people. The success rate dropped from 100\% to 96\%
 when visitor sized increased from 5 to 50 visitors per season. By just 250
 visitors, both the success rate and the happiness were zero percent.
 
 The tolerance for which campsite visitors stayed at each night had a positive
 effect on success rate of the scheduler and happiness of the visitors
 (\textbf{Figure~\ref{fig:sparklines} Spark 4}).  For seasons with
-200 visitors, a tolerance of zero campsites had a success rate of 0 percent
+200 visitors, a tolerance of zero campsites had a success rate of 0\%
 and happiness of zero percent. Increasing the tolerance to one campsite
-resulted in a success rate of 52 percent and a happiness of 4.9 percent.
+resulted in a success rate of 52\% and a happiness of 4.9\%.
 Increasing the tolerance to two campsites had the greatest effect, raising
-success rate to 97.8 percent and happiness to 95.9 percent. With any greater
+success rate to 97.8\% and happiness to 95.9\%. With any greater
 tolerances, the success rate was one-hundred percent, and the happiness
-leveled off at 97.8 percent.
+leveled off at 97.8\%.
 
 For seasons with 500 visitors, a greater tolerance was needed to achieve
 similar results (\textbf{Figure~\ref{fig:sparklines} Spark 5}).
 A tolerance of 0 campsites
 had a success rate of 0; a tolerance of 1 campsite had a success rate of
-only 2.6 percent; 2 campsites, 28 percent; 3 campsites, 90 percent. The
-success rate was only 100 percent with a tolerance of greater than 4 campsites,
-and the happiness was 98 percent.
+only 2.6\%; 2 campsites, 28\%; 3 campsites, 90\%. The
+success rate was only 100\% with a tolerance of greater than 4 campsites,
+and the happiness was 98\%.
 
 Assigning more visitors to motorboats (those that travel at 8 mph) was seen
 to increase the success rate. For a homogeneous season of 8 mph visitors, the
-success rate was 98.2 percent and the happiness 74 percent. At the number
+success rate was 98.2\% and the happiness 74\%. At the number
 of 4 mph boats increased, both success rate and happiness steadily decreased.
-With half rowboats and half motorboats, the success rate was 92 percent and
-the happiness 72 percent. With a 9:1 ratio of rowboats to motorboats, the
-success rate of the season was only 89.9 percent. However, there is a jump
-in success rate to 99 percent once all visitors are traveling at 4 mph. This
+With half rowboats and half motorboats, the success rate was 92\% and
+the happiness 72\%. With a 9:1 ratio of rowboats to motorboats, the
+success rate of the season was only 89.9\%. However, there is a jump
+in success rate to 99\% once all visitors are traveling at 4 mph. This
 jump in successes is not accompanied by a jump in happiness; with all
-rowboats, the happiness is only 70 percent.
+rowboats, the happiness is only 70\%.
 
 \subsection{Analysis}
 \label{sec:capacity}
-As defined in our definitions section, CARRYING CAPACITY IS []. With a
-tolerance of 2 campsites (\textbf{Figure~\ref{fig:visitors-t2}}), we found the river could manage 100 visitors per
-season with a 100 percent success rate and a happiness of at least 97 percent.
-It is worth noting, however, that doubling the capacity to 200 visitors per
-seasons yields a success rate of 99.5 percent, and a happiness still greater
-than 97 percent. Once the number of visitors per season increases past 200,
+As defined in our definitions section, carrying capacity is
+the amount of visitors a river can see in a single
+year while maintaining the likelihood that all visitors will be scheduled and
+remain satisfied. With a
+tolerance of 2 campsites (\textbf{Figure~\ref{fig:visitors-t2}}), we found
+the river could manage 100 visitors per
+season with a 100\% success rate and a satisfaction of at least 97\%.
+It is worth noting that doubling the capacity to 200 visitors per
+seasons yields a success rate of 99.5\% and a satisfaction still greater
+than 97\%. Once the number of visitors per season increases past 200,
 both success rate and tolerance begin to drop rapidly.
 \begin{figure}[h]
   \centering
@@ -490,10 +499,10 @@ both success rate and tolerance begin to drop rapidly.
   \label{fig:visitors-t2}
 \end{figure}
 With a tolerance of 1 campsite, we found the river could only manage about
-five visitors per season with a success rating of 100 percent. The average
-happiness of these visitors is 97.7 percent. After the number of visitors per
-season increases above 50, both happiness and success rate begin dropping
-rapidly.
+five visitors per season with a success rating of 100\%. The average
+satisfaction of these visitors is 97.7\%. After the number of visitors per
+season increases above 50, both satisfaction and success rate begin dropping
+rapidly as seen in \textbf{Figure \ref{fig:visitors-t1}}.
 \begin{figure}[h]
   \centering
   \includegraphics[scale=.6]{imgs/Graph_VistorsChanges_Tolerance1.png}
@@ -501,10 +510,11 @@ rapidly.
   \label{fig:visitors-t1}
 \end{figure}
 
-OUR CARRYING CAPACITY - X IS THE ANSWER
-
-
-SANITY CHECK USING NUMBER OF PEOPLE EVERY YEAR AND SUCH
+Is our value of 300 visitors, which was reasonably successful and maximal,
+realistic?  Assuming that it is possible to have 60 individuals in a visitor
+group, we find that our model allows for 18,000 people in a season to travel
+down the Big Long River.  Our sources suggest this is realistic for
+comparable rivers (i.e. the Colorado River)\cite{ColoradoRiverPaper}.
 
 \section{Final Thoughts}
 \label{sec:conclusions}
@@ -569,15 +579,16 @@ a complex problem that may not have only one solution. Managers will need
 to be assertive in designating a tolerance, allotting departure days and
 boat types to visitors, and instructing visitors to follow their schedules
 carefully. Given certain parameters, however, we recommend a tolerance of
-2 campsites, and about 300 visitors per season. A tolerance of 2 campsites
+2 campsites, and about 300 visitors per season. Depending upon the current
+number of visitors each season, $X$, \textbf{this would mean increasing the number
+of visitors by $300-X$}.  Note that those 300 visitors may be $groups$, not
+necessarily individuals.  A tolerance of 2 campsites
 permits a large number of visitors per season while maintaining acceptable
 visitor satisfaction. Any greater tolerance would create a sharp decrease
-in satisfaction as visitors as forced to travel unfortunate distances; any
+in satisfaction as visitors are forced to travel unfortunate distances; any
 smaller tolerance greatly decreases the chance of a successful schedule for
 any large number of visitors. Any more than 300 visitors is likely to drop
-both the chance of a successful season and the happiness of any visitors.
-
-DO SOMETHING WITH X-300 BLHA BLAH BLAH
+both the chance of a successful season and the happiness of visitors.
 
 
 \newpage
