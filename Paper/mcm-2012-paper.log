@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2012/dev/Arch Linux) (format=pdflatex 2012.2.6)  13 FEB 2012 03:51
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2012/dev/Arch Linux) (format=pdflatex 2012.2.6)  13 FEB 2012 11:06
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -612,26 +612,20 @@ File: imgs/searchExample.png Graphic file (type png)
 <use imgs/searchExample.png>
 Package pdftex.def Info: imgs/searchExample.png used on input line 315.
 (pdftex.def)             Requested size: 215.30383pt x 215.30383pt.
- [6 <./imgs/searchExample.png>] [7]
-<imgs/sparklines.png, id=40, 438.8897pt x 40.65187pt>
+ [6 <./imgs/searchExample.png>] [7] [8]
+<imgs/sparklines.png, id=43, 438.8897pt x 40.65187pt>
 File: imgs/sparklines.png Graphic file (type png)
 
 <use imgs/sparklines.png>
-Package pdftex.def Info: imgs/sparklines.png used on input line 419.
+Package pdftex.def Info: imgs/sparklines.png used on input line 423.
 (pdftex.def)             Requested size: 394.99707pt x 36.58633pt.
- [8]
-Overfull \hbox (13.22675pt too wide) in paragraph at lines 445--451
-[]\OT1/cmr/m/n/10.95 For sea-sons with a 1-site tol-er-ance, the ef-fect of vis
--i-tor size was seen to in-crease(\OT1/cmr/bx/n/10.95 Figure 2[]
- []
-
-[9 <./imgs/sparklines.png>]
+ [9 <./imgs/sparklines.png>]
 <imgs/Graph_VistorsChanges_Tolerance2.png, id=47, 610.53094pt x 396.7322pt>
 File: imgs/Graph_VistorsChanges_Tolerance2.png Graphic file (type png)
 
 <use imgs/Graph_VistorsChanges_Tolerance2.png>
 Package pdftex.def Info: imgs/Graph_VistorsChanges_Tolerance2.png used on input
- line 497.
+ line 515.
 (pdftex.def)             Requested size: 366.3214pt x 238.04114pt.
 
 <imgs/Graph_VistorsChanges_Tolerance1.png, id=48, 606.01407pt x 396.7322pt>
@@ -639,17 +633,14 @@ File: imgs/Graph_VistorsChanges_Tolerance1.png Graphic file (type png)
 
 <use imgs/Graph_VistorsChanges_Tolerance1.png>
 Package pdftex.def Info: imgs/Graph_VistorsChanges_Tolerance1.png used on input
- line 508.
+ line 526.
 (pdftex.def)             Requested size: 363.61125pt x 238.04114pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
+ [10]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[10] [11 <./imgs/Graph_VistorsChanges_Tolerance2.png>] [12 <./imgs/Graph_Vistor
-sChanges_Tolerance1.png>] [13] (./mcm-2012-paper.bbl)
+[11 <./imgs/Graph_VistorsChanges_Tolerance2.png>] [12 <./imgs/Graph_VistorsChan
+ges_Tolerance1.png>] [13] (./mcm-2012-paper.bbl)
 
 AED: lastpage setting LastPage
 [14] (./mcm-2012-paper.aux) ) 
@@ -660,7 +651,7 @@ Here is how much of TeX's memory you used:
  7824 multiletter control sequences out of 15000+200000
  10451 words of font info for 39 fonts, out of 3000000 for 9000
  831 hyphenation exceptions out of 8191
- 44i,11n,43p,313b,281s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 44i,11n,43p,317b,281s stack positions out of 5000i,500n,10000p,200000b,50000s
 </usr/share/texmf-dist/fonts/type1/public/amsfonts
 /cm/cmbx10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
 ></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/t
@@ -669,7 +660,7 @@ exmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts
 msfonts/cm/cmr17.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8
 .pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/sha
 re/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on mcm-2012-paper.pdf (15 pages, 174281 bytes).
+Output written on mcm-2012-paper.pdf (15 pages, 175295 bytes).
 PDF statistics:
  95 PDF objects out of 1000 (max. 8388607)
  63 compressed objects within 1 object stream

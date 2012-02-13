@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2012/dev/Arch Linux) (format=pdflatex 2012.2.6)  12 FEB 2012 23:28
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2012/dev/Arch Linux) (format=pdflatex 2012.2.6)  13 FEB 2012 11:02
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -131,14 +131,14 @@ e
 File: sampleinterface.png Graphic file (type png)
 
 <use sampleinterface.png>
-Package pdftex.def Info: sampleinterface.png used on input line 57.
+Package pdftex.def Info: sampleinterface.png used on input line 56.
 (pdftex.def)             Requested size: 211.3883pt x 174.91pt.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <10.95> on input line 83.
+(Font)              <10.95> on input line 81.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 83.
+(Font)              <8> on input line 81.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 83.
+(Font)              <6> on input line 81.
  [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./sampleinterface.png>] (.
@@ -153,7 +153,7 @@ Here is how much of TeX's memory you used:
  37i,6n,23p,250b,231s stack positions out of 5000i,500n,10000p,200000b,50000s
 </usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cm
 r10.pfb>
-Output written on mcm-2012-letter.pdf (1 page, 42069 bytes).
+Output written on mcm-2012-letter.pdf (1 page, 42093 bytes).
 PDF statistics:
  15 PDF objects out of 1000 (max. 8388607)
  8 compressed objects within 1 object stream

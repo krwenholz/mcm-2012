@@ -10,8 +10,8 @@
 \contentsline {subsection}{\numberline {3.1}General Expectations}{8}
 \contentsline {subsection}{\numberline {3.2}Results}{8}
 \contentsline {subsection}{\numberline {3.3}Analysis}{10}
-\contentsline {section}{\numberline {4}Final Thoughts}{10}
-\contentsline {subsection}{\numberline {4.1}Advantages to the Approach}{10}
-\contentsline {subsection}{\numberline {4.2}Detractors from the Approach}{11}
-\contentsline {subsection}{\numberline {4.3}Future Extensions}{12}
+\contentsline {section}{\numberline {4}Final Thoughts}{11}
+\contentsline {subsection}{\numberline {4.1}Advantages to the Approach}{11}
+\contentsline {subsection}{\numberline {4.2}Detractors from the Approach}{12}
+\contentsline {subsection}{\numberline {4.3}Future Extensions}{13}
 \contentsline {subsection}{\numberline {4.4}Final Recommendations}{13}
