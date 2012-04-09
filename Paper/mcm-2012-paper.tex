@@ -141,10 +141,10 @@ time each day, or don't get scheduled.
 
 \item Satisfaction: (of a visitor) Visitors seeking to raft the Big Long River
 start with a satisfaction of 100. This number will drop each time the visitor
-sees another visitor, or doesn't get their desired water time (too much or
-too little of it) each day. It is possible for a visitor's satisfaction to
-drop to zero by these two factors alone. It will be zero if the visitor
-can't be scheduled.
+passes or is passed by another visitor, or doesn't get their desired water time 
+(too much or too little of it) each day. It is possible for a visitor's 
+satisfaction to drop to zero by these two factors alone. Visitors who are not 
+able to be scheduled have a satisfaction of zero.
 
 \item Season: A six month season is assumed to have 180 days; that is,
 six months times an average of 30 days per month.
@@ -199,11 +199,6 @@ one group passes another group or is passed by another group.
 \item Groups are capable of passing one another at any point (i.e. passing is
 not restricted by the width of the river or anything else at any time).
 
-\item The satisfaction of a group is affected exclusively by the amount of
-contact with other visitors they have, how much water time they have
-compared to the desired amount, and whether or not they
-are actually scheduled.
-
 \item Visitors specify only their starting date, boat type, and water time,
 and only valid values for these parameters. Therefore: They may not start
 before the start of the season or so close to the end of the season it
@@ -212,7 +207,7 @@ such that their trip takes less than 7 or longer than 19 days; they may
 only choose an oar-powered rubber raft or a motorized boat.
 
 \item Visitors follow the schedule given to them exactly:
-no backtracking, skipping, or slowing down.
+no backtracking, skipping.
 \end{itemize}
 
 
@@ -230,8 +225,8 @@ We view the problem of scheduling rafting trips as a progressive and dynamic
 CSP. Each day is a constraint satisfaction problem dependent upon the
 solution to the previous day's problem.  By limiting the values any variable
 may take on and applying efficient algorithms, the CSP becomes tractable.
-This allows us to successfully schedule river trips without the need of unreasonable
-computing power.
+This allows us to successfully schedule river trips without the need of 
+unreasonable computing power.
 
 \subsection{Constraint Satisfaction}
 \label{sec:csp}
@@ -243,14 +238,13 @@ computing power.
 Consider that there are exponentially
 many combinations of  visitors to campsites during a season.  Many of
 these combinations, however, are invalid since no two
- visitors may stay at the same campsite on the same day.  This is perhaps
-the greatest limiting factor in the problem as it applies to all campers.
-This is an $n-ary$
-constraint: a constraint relating $n$ variables.  Such constraints are often
-computationally challenging, but our limited problem space makes
-the computations relatively painless.  We simply pair all campers and detect collisions at any
-campsite ($O(n^2)$ with $n$ as
-number of  visitors).  There are few other constraints involved in solving the problem.
+ visitors may stay at the same campsite on the same day.
+This is an $n-ary$ constraint: a constraint relating $n$ variables.  This sort 
+of complexity often causes problems to become computationally intractable.  We, 
+however, simply pair all campers and detect collisions at any campsite at the 
+current scheduled day
+($O(n^2)$ with $n$ as number of  visitors).  This small simplification reduces 
+the problem to relatively few constraints.
 
 Each visitor is considered to be a variable
 in the CSP and campsites are considered the values.  The domain of
@@ -295,9 +289,8 @@ existing pairings, it is permanently added to the day's assignments.
 We then proceed to the next visitor.
 
 When pairings fail, the algorithm attempts new pairings
-until success is achieved or no more pairings exist.  In this case,  failure occurs;
-the algorithm backtracks to the previous variable; undoes that pairing; and
-attempts a new pairing for this prior variable.  The entire process is structured as a
+until success is achieved or no more pairings exist. The entire process is 
+structured as a
 depth-first-search. When a day's assignment is complete, the algorithm creates
 a new CSP for the next day and executes again.  \textbf{Figure~\ref{fig:searchExample}}
 highlights the major steps
@@ -434,9 +427,9 @@ success rate began decreasing at an increasing rate.
 Further increases in the number of visitors produced the following points
 of interest:
 \begin{itemize}
-\item The success rate dropped from 100\% to 91\% between 100 and 300 campers.
-\item By 500 campers, the success rate had fallen to below 25\%.
-\item At 600 campers the success rate appears to level off, asymptotically,
+\item The success rate dropped from 100\% to 91\% between 100 and 300 visitors.
+\item By 500 visitors, the success rate had fallen to below 25\%.
+\item At 600 visitors the success rate appears to level off, asymptotically,
 between zero and 5\%.
 \end{itemize}
 These values seem to follow an inverse of the problem's solution space.
@@ -551,15 +544,12 @@ assignments and even more interesting results.
 
 \subsection{Detractors from the Approach}
 \label{sec:cons}
-river variation
-perfection of visitors
-vary start date
 In our assumptions (\textbf{Section \ref{sec:assumptions}}) we note that the
-visitors are basically perfect.  This, of course, is not true.  Visitors will
-probably vaguely follow the schedule given them: due either to inclement
-weather, rudeness, or physical constraints.  It is not immediately apparent
-how to deal with this shortcoming other than simply accepting that not all
-variables can be accounted for.  Padding the schedules with ``free days'' on
+visitors are basically perfect.  This, of course, is not true.  Due either to 
+inclement weather, rudeness, or physical constraints we can not expect this 
+behavior.  It is not immediately apparent
+how to deal with this shortcoming other than simply accepting all variables 
+can not be accounted for.  Padding the schedules with ``free days'' on
 which any amount of travel lag may be recuperated.
 
 The use of a consistent river in our model is less detrimental to the
