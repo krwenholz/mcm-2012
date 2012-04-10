@@ -110,28 +110,21 @@ visitors are as satisfied as possible.
 % tolerance: brief description plus see section blah
 % carrying capacity
 \begin{itemize}
-\item Big O: (of an algorithm) Also ``complexity.'' A function relating the
-time it takes to solve a problem and the inputs of the problem. For instance,
-a function whose Big O is O(x) computes in linear time.
-
 \item Carrying Capacity: The amount of visitors a river can see in a single
 year, while maintaining the likelihood that all visitors will be scheduled and
 remain satisfied.
-
 \item Constraint Satisfaction Problem (CSP): A type of problem solved by
-assigning values to variables. These values must be within specified domains.
-The problem is solved when all variables have values within the specified
-domains -- e.g. they have values that satisfy all constraints.
+assigning values to variables. Our working definition for such a
+problem follows: given variables ($X$), values ($D$),
+and constraints ($C$), find an assignment of value(s) in $D$
+for each $X$ such that all constraints in $C$ are satisfied.  Generally
+speaking, a CSP may be defined as a set $(X,D,C)$.
+A good example of a CSP is any map coloring problem\cite{DynamicCSP}.
 
 \item Group: See ``visitor.''
 
 \item Itinerary: The ordered list of campsites a visitor will stay at each
 night.
-
-\item Non-deterministic Polynomial-Time Hard Problem (NP-hard): A class of
-problems whose solutions, if they exist, behave unpredictably, and are
-provable in polynomial time -- see ``Big O.'' Constraint Satisfaction Problems
-are a type of NP-hard problem.
 
 \item Visitor: Also ``group.'' A person or a group of people
 seeking to travel the Big Long River by raft. Their raft could be powered
@@ -213,20 +206,12 @@ no backtracking, skipping.
 
 \section{The Solution}
 \label{sec:model-details}
-Our solution is structured to solve constraint satisfaction problems,
-specifically of a scheduling nature.  Our working definition for such a
-problem follows: given variables ($X$), values ($D$),
-and constraints ($C$), find an assignment of value(s) in $D$
-for each $X$ such that all constraints in $C$ are satisfied.  Generally
-speaking, a CSP may be defined as a set $(X,D,C)$.
-A good example of a CSP is any map coloring problem\cite{DynamicCSP}.
-
 We view the problem of scheduling rafting trips as a progressive and dynamic
-CSP. Each day is a constraint satisfaction problem dependent upon the
+CSP. 
+Each day is a constraint satisfaction problem dependent upon the
 solution to the previous day's problem.  By limiting the values any variable
-may take on and applying efficient algorithms, the CSP becomes tractable.
-This allows us to successfully schedule river trips without the need of 
-unreasonable computing power.
+may take on and applying efficient algorithms, the CSP becomes 
+reasonably simple algorithmically speaking.
 
 \subsection{Constraint Satisfaction}
 \label{sec:csp}
@@ -527,23 +512,21 @@ group, we find that our model allows for 18,000 people in a season to travel
 down the Big Long River.  Our sources suggest this is realistic for
 comparable rivers (i.e. the Colorado River)\cite{ColoradoRiverPaper}.
 
-\section{Final Thoughts}
+\section{Conclusion}
 \label{sec:conclusions}
-\subsection{Advantages to the Approach}
-\label{sec:pros}
 Throughout, we have seen that a constraint satisfaction approach to scheduling
 visitors to a river is a natural fit.  This approach allows for a logical
 approach to the scheduling process, and for fairly quick solutions.  In most
-cases, solutions were found on mid-grade hardware in less than ten minutes.
+cases, solutions were found on personal hardware in less than ten minutes.
 We also found that the structure of our solution in both code and at a
 higher level lent itself well to the adjustment of any number of parameters.
 Moreover, there exists a great deal of flexibility once one begins to define
 ``fuzzy values'' that we can assign to the variables.  Given more time,
 extending the model with these fuzzy values would likely lead to better
-assignments and even more interesting results.
+assignments and even more interesting results.  We would also consider 
+additional algorithmic improvements for performance or allowing for campsites 
+to rest, providing an ecological component.
 
-\subsection{Detractors from the Approach}
-\label{sec:cons}
 In our assumptions (\textbf{Section \ref{sec:assumptions}}) we note that the
 visitors are basically perfect.  This, of course, is not true.  Due either to 
 inclement weather, rudeness, or physical constraints we can not expect this 
@@ -559,29 +542,6 @@ and the potential for divisions of the river.  These could all be built in
 as constraints on the campsites and their assignment to visitors.  Should
 we have more time, this would likely be incorporated into the model.
 
-
-\subsection{Future Extensions}
-\label{sec:extensions}
-Given more time there are several additions that would improve the technical
-and practical performance of the model:
-\begin{itemize}
-\item The addition of a filtering technique to detect early failure in the
-backtracking search.  This is often performed as what is called
-``arc-consistency''.  Regretfully, it is difficult to implement for our
-n-ary constraints.
-\item Utilizing a fuzzy constraint for departure days would allow groups
-to have a window in which they might leave.  This is likely to increase the
-number of possible visitors, considering that it is nearly a direct analog
-to tolerance.
-\item The schedule might be modified to include days of rest for campsites
-on a rotating basis.  This would not aid in adding more visitors (in fact it
-would decrease the success rate), but it would assist in land management
-practices and encourage a healthy use of the river ecosystem.
-\end{itemize}
-
-
-\subsection{Final Recommendations}
-\label{sec:final}
 Designating an exact number of visitors to raft down a river each year is
 a complex problem that may not have only one solution. Managers will need
 to be assertive in designating a tolerance, allotting departure days and

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2012/dev/Arch Linux) (format=pdflatex 2012.4.2)  8 APR 2012 21:57
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2012/dev/Arch Linux) (format=pdflatex 2012.4.2)  9 APR 2012 23:30
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -623,22 +623,22 @@ LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
 File: imgs/searchExample.png Graphic file (type png)
 
 <use imgs/searchExample.png>
-Package pdftex.def Info: imgs/searchExample.png used on input line 308.
+Package pdftex.def Info: imgs/searchExample.png used on input line 299.
 (pdftex.def)             Requested size: 215.30383pt x 215.30383pt.
  [6 <./imgs/searchExample.png>] [7]
 <imgs/sparklines.png, id=40, 438.8897pt x 40.65187pt>
 File: imgs/sparklines.png Graphic file (type png)
 
 <use imgs/sparklines.png>
-Package pdftex.def Info: imgs/sparklines.png used on input line 416.
+Package pdftex.def Info: imgs/sparklines.png used on input line 407.
 (pdftex.def)             Requested size: 394.99707pt x 36.58633pt.
- [8] [9 <./imgs/sparklines.png>]
+ [8 <./imgs/sparklines.png>] [9]
 <imgs/Graph_VistorsChanges_Tolerance2.png, id=47, 610.53094pt x 396.7322pt>
 File: imgs/Graph_VistorsChanges_Tolerance2.png Graphic file (type png)
 
 <use imgs/Graph_VistorsChanges_Tolerance2.png>
 Package pdftex.def Info: imgs/Graph_VistorsChanges_Tolerance2.png used on input
- line 508.
+ line 499.
 (pdftex.def)             Requested size: 366.3214pt x 238.04114pt.
 
 <imgs/Graph_VistorsChanges_Tolerance1.png, id=48, 606.01407pt x 396.7322pt>
@@ -646,7 +646,7 @@ File: imgs/Graph_VistorsChanges_Tolerance1.png Graphic file (type png)
 
 <use imgs/Graph_VistorsChanges_Tolerance1.png>
 Package pdftex.def Info: imgs/Graph_VistorsChanges_Tolerance1.png used on input
- line 519.
+ line 510.
 (pdftex.def)             Requested size: 363.61125pt x 238.04114pt.
 
 
@@ -656,15 +656,15 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 [10] [11 <./imgs/Graph_VistorsChanges_Tolerance2.png>] [12 <./imgs/Graph_Vistor
-sChanges_Tolerance1.png>] [13] (./mcm-2012-paper.bbl)
+sChanges_Tolerance1.png>] (./mcm-2012-paper.bbl)
 
 AED: lastpage setting LastPage
-[14] (./mcm-2012-paper.aux) ) 
+[13] (./mcm-2012-paper.aux) ) 
 Here is how much of TeX's memory you used:
- 4618 strings out of 493629
- 65429 string characters out of 3148779
- 136034 words of memory out of 3000000
- 7824 multiletter control sequences out of 15000+200000
+ 4614 strings out of 493629
+ 65382 string characters out of 3148779
+ 134990 words of memory out of 3000000
+ 7820 multiletter control sequences out of 15000+200000
  10451 words of font info for 39 fonts, out of 3000000 for 9000
  831 hyphenation exceptions out of 8191
  44i,12n,43p,310b,281s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -676,10 +676,10 @@ exmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts
 msfonts/cm/cmr17.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8
 .pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/sha
 re/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on mcm-2012-paper.pdf (15 pages, 174849 bytes).
+Output written on mcm-2012-paper.pdf (14 pages, 173156 bytes).
 PDF statistics:
- 95 PDF objects out of 1000 (max. 8388607)
- 63 compressed objects within 1 object stream
+ 92 PDF objects out of 1000 (max. 8388607)
+ 61 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  21 words of extra memory for PDF output out of 10000 (max. 10000000)
 
